@@ -1,13 +1,27 @@
 <div class="price-bar-group">
+  <img class="lines" src="./lines.svg" alt="">
     <template x-for="(year, i) in selectedYears">
       <div class="price-bar-wrapper">
-        <div class="price-bar" :style="{'--value': year.totalInvested, '--maxValue': getBiggerValue()}" x-text="toSpecialNotation(year.totalInvested)"></div>
+        <div class="price-bar" :style="{'--value': year.totalInvested, '--maxValue': getBiggerValue()}">
+          <div class="popup" x-text="toSpecialNotation(year.totalInvested)" >POPUP</div>
+        </div>
         <div x-text="'Year ' + year.number"></div>
       </div>
     </template>
 </div>
 
 <style>
+  .lines {
+    position: absolute;
+    width: 79%;
+  }
+
+  .popup {
+    position: absolute;
+    top: -2em;
+    display: none;
+  }
+
   .pricing-calculator-wrapper {
   display: flex;
   gap: 2rem;
@@ -29,7 +43,7 @@
   right: 0;
   bottom: 0;
   padding: 5rem;
-  z-index: -1;
+  pointer-events: none;
 }
 
 .price-bar-wrapper {
@@ -38,6 +52,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: end;
+  position: relative;
+}
+
+.price-bar:hover .popup {
+  display: block;
+}
+
+.price-bar:hover {
+  background-color: var(--orange-default);
 }
 
 .price-bar {
@@ -51,7 +74,7 @@
   align-items: end;
   justify-content: center;
   padding: 0 0.5rem;
-  color: var(--neutral-light);
-  z-index:
+  position: relative;
+  pointer-events: all;
 }
 </style>
