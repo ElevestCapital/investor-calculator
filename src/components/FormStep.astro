@@ -1,0 +1,25 @@
+---
+import Input from "./Input.astro"
+---
+
+<div class="form-step" x-show={"step == " + Astro.props.step}>
+  <h2 class="title"><span>Step {Astro.props.step}: </span> {Astro.props.title}</h2>
+  <slot/>
+</div>
+
+<style>
+.title {
+  font-weight: 400;
+}
+
+.title span {
+  color: var(--orange-default);
+}
+
+.form-step {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+</style>

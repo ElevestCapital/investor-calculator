@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
+
+:root {
+  --orange-dark: #E66414;
+  --orange-default: #FF924D;
+  --orange-light: #F6C9B1;
+
+  --teal-dark: #05454B;
+  --teal-default: #00A8A8;
+  --teal-light: #9AD3DA;
+
+  --neutral-dark: #020000;
+  --neutral-default: #FFFAF3;
+  --neutral-light: #FFFFFF;
+}
+
+*,*::before,*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--neutral-light);
+  color: var(--neutral-dark);
+  font-family: 'Lexend Deca', serif;
+}
+
+.container {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: auto;
+  position: relative;
+  padding: 5rem;
+  gap: 2rem;
+}
+
+.container.container--center {
+  align-items: center;
+  justify-content: center;
+}
+
+.container.container--rows {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+  gap: 2rem;
+}
+
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.eyebrow {
+  color: var(--orange-dark);
+}
+
+.title {
+  font-weight: 400;
+}
+
+.title span {
+  color: var(--orange-default);
+}
+
+.label-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.8rem;
+}
+
+.form-step {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.button-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.8rem 2rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  background-color: var(--orange-dark);
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.button:hover {
+  background-color: var(--orange-default);
+}
+
+.button.button--white {
+  background-color: var(--neutral-default);
+  color: var(--neutral-dark);
+}
+
+.input-wrapper {
+  position: relative;
+  padding: 0;
+}
+
+.input-wrapper span {
+  position: absolute;
+  left: 0.5em;
+  top: 1em;
+}
+
+.input {
+  background-color: transparent;
+  border: 1px solid var(--neutral-light);
+  height: 130%;
+  width: 100%;
+  padding: 1rem;
+  color: var(--neutral-light);
+  text-align: right;
+  border-radius: 0.5rem;
+  padding-right: 1rem;
+}
+
+.input.input--light {
+  border: 1px solid var(--teal-dark);
+  color: var(--neutral-dark)
+}
+
+::-webkit-inner-spin-button
+		{ 
+			display: none; 
+		} 
+
+.pricing-calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--teal-dark);
+  border-radius: 1rem;
+  padding: 1rem;
+  height: fit-content;
+}
+
+.accordion-toggle {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-pricing {
+  font-size: 2rem;
+}
+
+.accordion-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.accordion-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.pricing-calculator-wrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: start;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price-bar-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: end;
+  height: 400px;
+  justify-content: end;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 5rem;
+}
+
+.price-bar-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+
+.price-bar {
+  --value: 1000;
+  --maxValue: 2000;
+  --percent: calc(var(--value) / var(--maxValue));
+  height: calc(100% * var(--percent));
+  width: 40px;
+  background-color: var(--orange-dark);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding: 0 0.5rem;
+  color: var(--neutral-light)
+}

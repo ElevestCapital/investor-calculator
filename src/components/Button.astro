@@ -1,0 +1,30 @@
+---
+const type = Astro.props.type
+const klass = "button"
+---
+
+{type == 'submit' ? <button class={klass} {...Astro.props}><slot/></button> : <a class={klass} {...Astro.props}><slot/></a>}
+
+<style>  
+.button {
+  padding: 0.8rem 2rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  background-color: var(--orange-dark);
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.button:hover {
+  background-color: var(--orange-default);
+}
+
+.button.button--white {
+  background-color: var(--neutral-default);
+  color: var(--neutral-dark);
+}
+</style>

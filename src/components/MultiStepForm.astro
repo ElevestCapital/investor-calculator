@@ -1,0 +1,39 @@
+---
+import Form from "./Form.astro"
+import FormStep from "./FormStep.astro"
+import Input from "./Input.astro"
+import Button from "./Button.astro"
+
+function multiStepForm(){
+  return {
+    value: {
+      newInvestments: 100000,
+      numberOfInvestments: 1
+    },
+    step: 1,
+    submit(){
+      if(this.step == 2){
+        window.location.href = `/results.html?newInvestments=${this.value.newInvestments}&numberOfInvestments=${this.value.numberOfInvestments}`;
+      } else {
+        this.step += 1
+      }
+    },
+    back(){
+      this.step -= 1
+    }
+  }
+}
+---
+
+<Form action="/results.html" x-data={multiStepForm} @submit.prevent="submit">
+  <FormStep step={1} title=" New Investments">
+    <Input label="How much are you willing to invest?" x-model={"value.newInvestments"} name="newInvestments" required/>
+  </FormStep>
+  <FormStep step={2} title="Number of Investments">
+    <Input label="How many times per year?" x-model={"value.numberOfInvestments"} name="numberOfInvestments" required/>
+  </FormStep>
+  <div class="button-wrapper">
+    <Button x-show="step > 1" @click="step--">Back</Button>
+    <Button type="submit">Next</Button>
+  </div>
+</Form>

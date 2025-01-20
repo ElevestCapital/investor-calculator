@@ -1,0 +1,47 @@
+<label class="label-wrapper">
+  <p class="label">{Astro.props.label}</p>
+  <div class="input-wrapper">
+    <span>$</span>
+    <input {...Astro.props} class="input">
+  </div>
+</label>
+
+<style>
+  .label-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.8rem;
+}
+
+.input-wrapper {
+  position: relative;
+  padding: 0;
+}
+
+.input-wrapper span {
+  position: absolute;
+  left: 0.5em;
+  top: 1em;
+}
+
+.input {
+  background-color: transparent;
+  border: 1px solid var(--neutral-light);
+  height: 130%;
+  width: 100%;
+  padding: 1rem;
+  color: var(--neutral-light);
+  text-align: right;
+  border-radius: 0.5rem;
+  padding-right: 1rem;
+}
+
+.input.input--light {
+  border: 1px solid var(--teal-dark);
+  color: var(--neutral-dark)
+}
+</style>
