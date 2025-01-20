@@ -27,10 +27,10 @@ function multiStepForm(){
 
 <Form action="/results.html" x-data={multiStepForm} @submit.prevent="submit">
   <FormStep step={1} title=" New Investments">
-    <Input label="How much are you willing to invest?" x-model={"value.newInvestments"} name="newInvestments" required/>
+    <Input type="number" step="0.1"  label="How much are you willing to invest?" x-model={"value.newInvestments"} name="newInvestments" required/>
   </FormStep>
   <FormStep step={2} title="Number of Investments">
-    <Input label="How many times per year?" x-model={"value.numberOfInvestments"} name="numberOfInvestments" required/>
+    <Input type="number" step="1" label="How many times per year?" x-model={"value.numberOfInvestments"} name="numberOfInvestments" required/>
   </FormStep>
   <div class="button-wrapper">
     <Button x-show="step > 1" @click="step--">Back</Button>

@@ -123,8 +123,8 @@ function calculator(){
 
       </div>
       <Form>
-        <Input label="New Investments" x-model="newInvestments"/>
-        <Input label="Number of Investments" x-model="numberOfInvestments"/>
+        <Input type="number" step="0.1"  label="New Investments" x-model="newInvestments"/>
+        <Input type="number" step="1"  label="Number of Investments" x-model="numberOfInvestments"/>
       </Form>
     </div>
     <Accordion title="With Elevest"/>
