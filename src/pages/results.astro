@@ -1,19 +1,113 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Container from '../components/Container.astro';
-import Calculator from '../components/Calculator.astro';
-
-/*
-const urlParams = new URLSearchParams(window.location.search);
-const initial = {
-newInvestments: urlParams.get('newInvestments') ?? 1000000,
-numberOfInvestments: urlParams.get('numberOfInvestments') ?? 1,
-}
-*/
-
-
+import calculator from "../utils/Calculator";
+import Form from '../components/form/Form.astro';
+import Input from '../components/form/Input.astro';
+import Accordion from '../components/Accordion.astro';
+import PriceBars from '../components/PriceBars.astro';
 ---
 
 <Layout>
-  <Calculator/>
+  <Container>    
+    <div class="layout" x-data={calculator}>
+      <div class="col">
+        <div class="subcol">
+          <a class="link" href="/">← GO BACK</a>
+          <div class="title-wrapper">
+            <h1 class="eyebrow">Pricing calculator</h1>
+            <p class="title">
+              View the results of your investments
+            </p>
+          </div>
+          
+        </div>
+        <div class="form-wrapper">
+          <Form>
+            <Input 
+            style={{
+              paddingRight: '2.5rem'
+            }} price x-mask:dynamic="$money($input)" type="text" label="How much are you willing to invest?" x-model={"newInvestments"} name="newInvestments" required/>
+            <Input type="number" step="1" label="How many times per year?" x-model={"numberOfInvestments"} name="numberOfInvestments" required/>
+          </Form>
+        </div>
+      </div>
+      <Accordion title="Ending Invested Balance" data="endingInvestedBalance" color="var(--teal-dark)"/>
+      <Accordion title="Cashflow" data="cashFlow" color="var(--teal-dark)"/>
+      <PriceBars/>
+    </div>
+  </Container>
 </Layout>
+
+
+<style lang="scss">
+  
+  .form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    z-index: 1;
+    animation: var(--animation-grow-strong);
+  }
+  
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: relative;
+    gap: 2rem;
+    flex-grow: 1;
+    
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 767px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  .link {
+    color: var(--color-teal-default);
+  }
+  
+  .title-wrapper {
+    z-index: 2;
+  }
+  
+  .title {
+    font-weight: 400;
+    font-size: 2rem; 
+  }
+  
+  .title span {
+    color: var(--color-orange-default);
+  }
+  
+  .eyebrow {
+    color: var(--color-orange-dark);
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem ;
+
+    
+    @media (max-width: 1200px) {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+
+  }
+  
+  .subcol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+</style>

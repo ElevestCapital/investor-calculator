@@ -1,54 +1,17 @@
+---
+import "../styles/global.scss"
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	<!-- Alpine Plugins -->
-	<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
-	
+	<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>	
 	<!-- Alpine Core -->
 	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-	<style is:global>
-		@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
-		:root {
-			--orange-dark: #E66414;
-			--orange-default: #FF924D;
-			--orange-light: #F6C9B1;
-			
-			--teal-dark: #05454B;
-			--teal-default: #00A8A8;
-			--teal-light: #9AD3DA;
-			
-			--neutral-dark: #020000;
-			--neutral-default: #FFFAF3;
-			--neutral-light: #FFFFFF;
-		}
-		
-		*,*::before,*::after {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-		
-		html {
-			font-size: 16px;
-		}
-		
-		body {
-			background-color: var(--neutral-default);
-			color: var(--teal-dark);
-			font-family: 'Lexend Deca', serif;
-		}
-
-		
-::-webkit-inner-spin-button
-		{ 
-			display: none; 
-		} 
-
-	</style>
 </head>
 <body>  
 	<slot/>

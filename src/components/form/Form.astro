@@ -1,0 +1,134 @@
+---
+function form(){
+  return {
+    value: {
+      newInvestments: 100000,
+      numberOfInvestments: 1
+    },
+    step: 1,
+    submit(){
+      if(this.step == 2){
+        const value = String(this.value.newInvestments).split(',').join('')
+        window.location.href = `/results.html?newInvestments=${value}&numberOfInvestments=${this.value.numberOfInvestments}`;
+      } else {
+        this.step += 1
+      }
+    },
+    back(){
+      this.step -= 1
+    }
+  }
+}
+---
+<div class="card">
+  <form class="form" x-data={form} @submit.prevent="submit">
+    <slot/>
+  </form>
+</div>
+
+<style lang="scss">
+  .background {
+    position: absolute;
+    width: 32rem;
+    height: 30rem;
+    z-index: -1;
+    overflow: hidden;
+    animation: var(--animation-grow-strong);
+    animation-delay: 0.4s;
+    
+    .image-blob {
+      position: absolute;
+      right: 0%;
+      top: 0%;
+      width: 20rem;
+    }
+    
+    .image-dots {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 10rem;
+    }
+  }
+  
+  .card {
+    background-color: var(--color-teal-dark);
+    width: 25rem;
+    color: var(--color-neutral-light);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    flex-grow: 1;
+    transition: var(--transition);
+  }
+
+  .card:hover {
+    transform: scale(1.01);
+  }
+  
+
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  /*
+  
+  .background {
+  position: absolute;
+  width: 32rem;
+  height: 30rem;
+  z-index: -1;
+  overflow: hidden;
+  }
+  
+  .image-blob {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  width: 20rem;
+  }
+  
+  .image-dots {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 10rem;
+  }
+  
+  .card {
+  background-color: var(--teal-dark);
+  width: 25rem;
+  color: var(--neutral-light);
+  padding: 32px;
+  border-radius: 1rem;
+  }
+  
+  .form {
+  align-self: center;
+  justify-self: center;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  }
+  
+  .form.form--results {
+  padding: 0;
+  border-radius: 0;
+  background-color: 0;
+  }
+  
+  
+  .form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  }
+  
+  */
+  
+  
+</style>

@@ -1,0 +1,57 @@
+<div class="open-transition">
+  <slot/>
+</div>
+
+<style define:vars={{
+  animation: Astro.props.animation || 'grow',
+  delay: Astro.props.delay || '0s'
+}}>
+
+.open-transition {
+  opacity: 0;
+  animation-name: var(--animation);
+  animation-duration: 1s;
+  animation-delay: var(--delay);
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  width: 100%;
+  height: fit-content;
+}
+
+@keyframes grow {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+
+
+</style>

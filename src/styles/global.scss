@@ -1,0 +1,30 @@
+@import url('./tokens/color.scss');
+@import url('./tokens/fonts.scss');
+@import url('./tokens/size.scss');
+@import url('./tokens/animations.scss');
+
+
+*,*::before,*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+  overflow-x: hidden;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+}
+
+body {
+  background-color: var(--color-neutral-light);
+  color: var(--color-teal-dark);
+  font-family: var(--font-family);
+}

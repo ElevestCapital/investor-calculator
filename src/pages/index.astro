@@ -1,14 +1,55 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import MultiStepForm from '../components/MultiStepForm.astro'
+import Step from '../components/form/Step.astro';
+import Input from '../components/form/Input.astro';
+import Form from '../components/form/Form.astro';
+import Slider from '../components/form/Slider.astro';
+import Button from '../components/form/Button.astro';
 import Container from '../components/Container.astro';
+import Background from '../components/form/Background.astro';
 ---
 
 <Layout>
-	<Container style={{
-		alignItems: 'center',
-		justifyContent: 'center'
-	}}>
-		<MultiStepForm/>
-	</Container>	
+	<Container>
+		<div class="layout">
+			<div class="form-wrapper">
+				<Background/>
+				<Form>
+					<Slider>
+						<Step title="New Investments" step={1}>
+							<Input style={{
+								paddingRight: '2.5rem'
+							}} price x-mask:dynamic="$money($input)" type="text" label="How much are you willing to invest?" x-model={"value.newInvestments"} name="newInvestments" required/>
+							<div class="button-wrapper">
+								<Button type="submit">Next</Button>
+							</div>
+						</Step>
+						<Step title="Number of Investments" step={2}>
+							<Input type="number" step="1" label="How many times per year?" x-model={"value.numberOfInvestments"} name="numberOfInvestments" required/>
+							<div class="button-wrapper">
+								<Button class="button is-secondary" @click="--step">Back</Button>
+								<Button type="submit">Next</Button>
+							</div>
+						</Step>
+					</Slider>
+				</Form>
+			</div>
+		</div>
+	</Container>
 </Layout>
+
+<style>
+	.layout {
+		flex-grow: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.form-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		animation: var(--animation-grow);
+	}
+</style>

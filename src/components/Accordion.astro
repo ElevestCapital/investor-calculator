@@ -1,4 +1,9 @@
 ---
+
+const data = Astro.props.data
+const maxValue = `numberToPrice(years()[30].${data})`
+const value = `parseFloat(year.${data}).toFixed(2)`
+
 function accordion(){
   return {
     open: false,
@@ -15,14 +20,14 @@ function accordion(){
       {Astro.props.title}
       <svg :style="{'transform': open ? 'rotate(90deg)' : 'rotate(0deg)'}" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6L8.59 7.41Z" fill="currentColor"/></svg>
     </div>
-    <h2 x-text="'$ '+ parseFloat(total).toFixed(2)"></h2>
+    <h2 x-text={`'$ ' + ${maxValue}`}></h2>
   </div>
   <div class="accordion-content" :class="{'open': open}" >
     <template x-for="(year, i) in selectedYears">
       <div class="accordion-item">
         <span x-text="'Year ' + year.number"></span>
         <div>
-        $ <span x-text="parseFloat(year.totalInvested).toFixed(2)"></span>
+        $ <span x-text={value}></span>
         </div>
       </div>
     </template>
@@ -35,15 +40,19 @@ function accordion(){
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border: 1px solid var(--teal-dark);
+  border: 1px solid var(--color-teal-dark);
   border-radius: 1rem;
   padding: 1.5rem;
   height: fit-content;
-  background-color: var(--neutral-light);
+  background-color: var(--color-neutral-light);
   z-index: 3;
+  cursor: pointer;
+  transition: var(--transition);
+  transition-duration: 0.1;
 }
 
 .open {
+  transition: var(--transition);
   height: 18em !important;
 }
 

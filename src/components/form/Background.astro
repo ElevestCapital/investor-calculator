@@ -1,0 +1,30 @@
+<div class="background">
+  <img class="image-blob" src="/blob.svg" alt="">
+  <img class="image-dots" src="/dots.svg" alt="">
+</div> 
+
+<style lang="scss">
+  .background {
+    position: absolute;
+    width: 32rem;
+    height: 30rem;
+    z-index: -1;
+    overflow: hidden;
+    animation: var(--animation-grow-strong);
+    animation-delay: 0.4s;
+    
+    .image-blob {
+      position: absolute;
+      right: 0%;
+      top: 0%;
+      width: 20rem;
+    }
+    
+    .image-dots {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 10rem;
+    }
+  }
+</style>

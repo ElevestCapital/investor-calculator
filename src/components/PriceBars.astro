@@ -1,19 +1,23 @@
-<div class="price-bar-group">
-  <img class="lines" src="./lines.svg" alt="">
+<div class="price-bar-wrapper">
+  <div class="price-bar-group">
+    
     <template x-for="(year, i) in selectedYears">
       <div class="price-bar-wrapper">
-        <div class="price-bar" :style="{'--value': year.totalInvested, '--maxValue': getBiggerValue()}">
-          <div class="popup" x-text="toSpecialNotation(year.totalInvested)" >POPUP</div>
+        <div class="price-bar" :style="{'--value': year.cashFlow, '--maxValue': 1000000}">
+          <div class="popup" x-text="toSpecialNotation(year.cashFlow)" >POPUP</div>
         </div>
-        <div x-text="'Year ' + year.number"></div>
+        <div>Year</div>
+        <div x-text="year.number"></div>
       </div>
     </template>
+    
+  </div>
 </div>
 
 <style>
-  .lines {
-    position: absolute;
-    width: 79%;
+  .year-number {
+    width: 100%;
+    text-align: center;
   }
 
   .popup {
@@ -22,59 +26,75 @@
     display: none;
   }
 
-  .pricing-calculator-wrapper {
-  display: flex;
-  gap: 2rem;
-  align-items: start;
-}
-
-.price {
-  display: flex;
-  justify-content: space-between;
-}
-
-.price-bar-group {
-  display: flex;
-  gap: 0.5rem;
-  align-items: end;
-  height: 400px;
-  justify-content: end;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 5rem;
-  pointer-events: none;
-}
-
-.price-bar-wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: end;
-  position: relative;
-}
-
-.price-bar:hover .popup {
-  display: block;
-}
-
-.price-bar:hover {
-  background-color: var(--orange-default);
-}
-
-.price-bar {
-  --value: 1000;
-  --maxValue: 2000;
-  --percent: calc(var(--value) / var(--maxValue));
-  height: calc(100% * var(--percent));
-  width: 40px;
-  background-color: var(--orange-dark);
-  display: flex;
-  align-items: end;
-  justify-content: center;
-  padding: 0 0.5rem;
-  position: relative;
-  pointer-events: all;
-}
+  .price-bar-wrapper {
+    position: relative;
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+  
+  .price {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  @keyframes grow-bar {
+    from: {
+      height: 0%
+    } to {
+      height: 550px;
+    }
+  }
+  
+  .price-bar-group {
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+    height: 0px;
+    justify-content: end;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    animation: grow-bar 1s ease-in-out forwards;
+    background: url('./lines.svg');
+    width: 100%;
+    
+    @media (max-width: 1200px) {
+      position: static;
+      max-height: 10rem;
+    }
+  }
+  
+  .price-bar-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+    width: 100%;
+  }
+  
+  .price-bar:hover .popup {
+    display: block;
+  }
+  
+  .price-bar:hover {
+    background-color: var(--color-orange-default);
+  }
+  
+  .price-bar {
+    --value: 1000;
+    --maxValue: 2000;
+    --percent: calc(var(--value) / var(--maxValue));
+    height: calc(100% * var(--percent));
+    width: 100%;
+    background-color: var(--color-orange-dark);
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding: 0 0.5rem;
+    position: relative;
+    pointer-events: all;
+  }
 </style>

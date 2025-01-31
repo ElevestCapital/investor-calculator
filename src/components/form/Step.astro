@@ -1,0 +1,37 @@
+---
+import Input from "./Input.astro"
+---
+
+<div class="form-step" :style={`{opacity: step == ${Astro.props.step} ? '1' : '0'}`}>
+  <h2 class="title"><span>Step {Astro.props.step}: </span> {Astro.props.title}</h2>
+  <div class="space">
+    <slot/>
+  </div>
+</div>
+
+<style>
+.title {
+  font-weight: 400;
+}
+
+.space {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 1rem;
+}
+
+.title span {
+  color: var(--color-orange-default);
+}
+
+.form-step {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 20rem;
+  transition: var(--transition);
+}
+
+</style>

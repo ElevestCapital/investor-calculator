@@ -1,11 +1,4 @@
----
-import Form from "./Form.astro";
-import Input from "./Input.astro";
-import Container from "./Container.astro";
-import Accordion from "./Accordion.astro";
-import PriceBars from "./PriceBars.astro";
-
-function calculator(){
+export default function calculator(){
   const urlParams = new URLSearchParams(window.location.search);
   const initial = {
     newInvestments: urlParams.get('newInvestments') ?? 1000000,
@@ -46,8 +39,6 @@ function calculator(){
       cashFlow: prefferedReturn / 12
     }
     
-    console.log(result, holdenYear)
-    
     return result
   }
   
@@ -57,9 +48,17 @@ function calculator(){
     newInvestments: initial.newInvestments, 
     numberOfInvestments: initial.numberOfInvestments,
     total: 0,
+    priceToNumber(value: any){
+      return parseInt(value.split(',').join(''))
+    },
+    numberToPrice(value: any){
+      let [dollars, cents] = parseFloat(value).toFixed(2).split('.')
+      dollars = dollars.split('').map((x, i) => i % 3 == 0 && i !== 0 ? ',' + x : x).join('')
+      return dollars + '.' + cents
+    },
     years(){
       const years = []
-      const newInvestments = -this.newInvestments * Number(this.numberOfInvestments)
+      const newInvestments = -this.priceToNumber(this.newInvestments) * this.priceToNumber(this.numberOfInvestments)
       years.push(year0(newInvestments))
       for (let index = 0; index < 30; index++) {
         years.push(nextYear(years, newInvestments))      
@@ -104,66 +103,3 @@ function calculator(){
     }
   } 
 }
-
----
-<div x-data={calculator}>
-  <Container style={`
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      position: relative;
-    `}>
-    
-    <div class="col">
-      <div class="subcol">
-        <a href="/">go back</a>
-        <div class="title-wrapper">
-          <h1 class="eyebrow">Pricing calculator</h1>
-          <p class="title">
-            View the results of your investments
-          </p>
-        </div>
-
-      </div>
-      <Form>
-        <Input type="number" step="0.1"  label="New Investments" x-model="newInvestments"/>
-        <Input type="number" step="1"  label="Number of Investments" x-model="numberOfInvestments"/>
-      </Form>
-    </div>
-    <Accordion title="With Elevest"/>
-    <PriceBars/>
-  </Container>
-</div>
-
-<style>
-.title-wrapper {
-  z-index: 2;
-}
-
-.title {
-  font-weight: 400;
-  font-size: 42px;
-}
-
-.title span {
-  color: var(--orange-default);
-}
-
-.eyebrow {
-  color: var(--orange-dark);
-  text-transform: uppercase;
-  font-size: 1rem;
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem ;
-}
-
-.subcol {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-</style>
