@@ -9,7 +9,7 @@ export default function calculator(){
   totalInvested * prefReturn
   
   
-  const returnPercent = 0.06; // preferred return
+  const returnPercent = 0.056; // preferred return
   const targetEM = 1.8; // target EM
   const holdTime = 3;
   
