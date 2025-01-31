@@ -2,7 +2,7 @@
 
 const data = Astro.props.data
 const maxValue = `numberToPrice(years()[30].${data})`
-const value = `parseFloat(year.${data}).toFixed(2)`
+const value = `numberToPrice(year.${data})`
 
 function accordion(){
   return {
