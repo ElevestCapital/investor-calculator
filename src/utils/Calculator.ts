@@ -54,6 +54,8 @@ export default function calculator(){
     numberToPrice(value: any){
       let [dollars, cents] = parseFloat(value).toFixed(2).split('.')
       dollars = dollars.split('').map((x, i) => i % 3 == 0 && i !== 0 ? ',' + x : x).join('')
+      if(!dollars) dollars = '0'
+      if(!cents) cents = '0'
       return dollars + '.' + cents
     },
     years(){
