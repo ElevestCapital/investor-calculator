@@ -1,4 +1,4 @@
-<div class="">
+<div class="price-scroll">
   <div class="price-bar-group">
     <template x-for="(year, i) in selectedYears">
       <div class="price-bar-wrapper">
@@ -16,6 +16,10 @@
 </div>
 
 <style>
+  .price-scroll {
+    overflow-x: scroll;
+  }
+
   .year-number {
     width: 100%;
     text-align: center;
