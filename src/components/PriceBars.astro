@@ -32,7 +32,7 @@
     background: url('/balloon.svg');
     background-size: 100%;
     background-repeat: no-repeat;
-
+    text-wrap: nowrap;
   }
 
   .price-bar-wrapper {
@@ -65,9 +65,12 @@
     pointer-events: none;
     animation: grow-bar 1s ease-in-out forwards;
     background: url('./lines.svg');
-    background-size:contain;
+    background-size: contain;
+    background-position: center -1.8rem;
+    background-repeat: no-repeat;
     width: fit-content;
     justify-content: end;
+    padding: 2rem;
     
     @media (max-width: 1200px) {
       position: static;
