@@ -56,14 +56,11 @@ import PriceBars from '../components/PriceBars.astro';
     position: relative;
     gap: 2rem;
     flex-grow: 1;
-    
-    @media (max-width: 1200px) {
-      grid-template-columns: 1fr 1fr;
-    }
 
-    @media (max-width: 767px) {
+    @media (max-width: 1200px) {
       display: flex;
       flex-direction: column;
+      padding: 1rem;
     }
   }
   
