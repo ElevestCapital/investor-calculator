@@ -1,13 +1,14 @@
 <div class="">
   <div class="price-bar-group">
-    
     <template x-for="(year, i) in selectedYears">
       <div class="price-bar-wrapper">
         <div class="price-bar" :style="{'--value': year.cashFlow, '--maxValue': 1000000}">
-          <div class="popup" x-text="toSpecialNotation(year.cashFlow)" >POPUP</div>
+          <div class="popup">
+            <span x-text="toSpecialNotation(year.cashFlow)"></span>            
+          </div>
         </div>
         <div>Year</div>
-        <div x-text="year.number"></div>
+        <div style="opacity: 0.5" x-text="year.number"></div>
       </div>
     </template>
     
@@ -19,11 +20,19 @@
     width: 100%;
     text-align: center;
   }
-
+  
   .popup {
     position: absolute;
-    top: -2em;
+    top: -5rem;
     display: none;
+    z-index: 9;
+    padding: 1rem;
+    padding-bottom: 3rem;
+    color: var(--color-teal-dark);
+    background: url('/balloon.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+
   }
 
   .price-bar-wrapper {
@@ -97,5 +106,7 @@
     padding: 0 0.5rem;
     position: relative;
     pointer-events: all;
+    border-radius: 0.5rem 0.5rem 0 0;
+    transition: var(--transition);
   }
 </style>
