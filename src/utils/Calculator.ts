@@ -78,10 +78,10 @@ export default function calculator(){
     },
     toSpecialNotation(value: any){
       if(value > 1000000){
-        return (parseInt(value) / 1000000) + 'M'
+        return Math.floor(parseInt(value) / 1000000) + 'M'
       }
       else if(value > 1000){
-        return (parseInt(value) / 1000) + 'K'
+        return Math.floor(parseInt(value) / 1000) + 'K'
       }
       else {
         return value
