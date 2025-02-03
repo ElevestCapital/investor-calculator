@@ -42,6 +42,9 @@ import Background from '../components/form/Background.astro';
 <style lang="scss">
 	.title {
 		max-width: 50%;
+		@media (max-width: 767px) {
+			max-width: 100%;
+		}
 	}
 
 	.layout {
@@ -52,8 +55,12 @@ import Background from '../components/form/Background.astro';
 		justify-content: center;
 
 		@media (max-width: 767px) {
-			align-items: start;
-			justify-content: center;
+			padding-top: 0;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			justify-content: start;
+			gap: 10rem;
 			margin-top: 5rem;
 		}
 	}
