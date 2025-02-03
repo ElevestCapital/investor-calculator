@@ -51,12 +51,12 @@ export default function calculator(){
     priceToNumber(value: any){
       return parseInt(value.split(',').join(''))
     },
-    numberToPrice(value: any){
+    numberToPrice(value: any, cent = true){
       let [dollars, cents] = parseFloat(value).toFixed(2).split('.')
       dollars = dollars.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       if(!dollars) dollars = '0'
       if(!cents) cents = '0'
-      return dollars + '.' + cents
+      return cent ? dollars + '.' + cents : dollars
     },
     years(){
       const years = []

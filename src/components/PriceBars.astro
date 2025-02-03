@@ -4,7 +4,7 @@
       <div class="price-bar-wrapper">
         <div class="price-bar" :style="{'--value': year.cashFlow, '--maxValue': 1000000}">
           <div class="popup">
-            <span x-text="toSpecialNotation(year.cashFlow)"></span>            
+            <span x-text="'$ ' + numberToPrice(year.cashFlow, false)"></span>            
           </div>
         </div>
         <div>Year</div>
