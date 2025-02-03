@@ -12,7 +12,7 @@ import Background from '../components/form/Background.astro';
 <Layout>
 	<Container>
 		<div class="layout">
-			<h1>Let’s Build Your Blueprint to to Long Term Wealth and Passive Income</h1>
+			<h1 class="title">Let’s Build Your Blueprint to to Long Term Wealth and Passive Income</h1>
 			<div class="form-wrapper">
 				<Background/>
 				<Form>
@@ -40,10 +40,15 @@ import Background from '../components/form/Background.astro';
 </Layout>
 
 <style lang="scss">
+	.title {
+		max-width: 50%;
+	}
+
 	.layout {
 		flex-grow: 1;
 		display: flex;
-		align-items: center;
+		padding-top: 10rem;
+		align-items: start;
 		justify-content: center;
 
 		@media (max-width: 767px) {
