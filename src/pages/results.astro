@@ -15,25 +15,23 @@ import PriceBars from '../components/PriceBars.astro';
         <div class="subcol">
           <a class="link" href="/">← GO BACK</a>
           <div class="title-wrapper">
-            <h1 class="eyebrow">Pricing calculator</h1>
             <p class="title">
-              View the results of your investments
+              Congratulations… Here is your Blueprint
             </p>
           </div>
-          
         </div>
         <div class="form-wrapper">
           <Form>
             <Input 
             style={{
               paddingRight: '2.5rem'
-            }} price x-mask:dynamic="$money($input)" type="text" label="How much are you willing to invest?" x-model={"newInvestments"} name="newInvestments" required/>
-            <Input type="number" step="1" label="How many times per year?" x-model={"numberOfInvestments"} name="numberOfInvestments" required/>
+            }} price x-mask:dynamic="$money($input)" type="text" label="Amount of investment per deal" x-model={"newInvestments"} name="newInvestments" required/>
+            <Input type="number" step="1" label="Number of Investments Per Year" x-model={"numberOfInvestments"} name="numberOfInvestments" required/>
           </Form>
         </div>
       </div>
-      <Accordion title="Ending Invested Balance" data="endingInvestedBalance" color="var(--teal-dark)"/>
-      <Accordion title="Cashflow" data="cashFlow" color="var(--teal-dark)"/>
+      <Accordion title="Ending Investment Balance" data="endingInvestedBalance" color="var(--teal-dark)"/>
+      <Accordion title="Approximate Monthly Cashflow" data="cashFlow" color="var(--teal-dark)"/>
       <PriceBars/>
     </div>
   </Container>

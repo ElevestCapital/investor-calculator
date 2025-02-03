@@ -19,13 +19,13 @@ import Background from '../components/form/Background.astro';
 						<Step title="New Investments" step={1}>
 							<Input style={{
 								paddingRight: '2.5rem'
-							}} price x-mask:dynamic="$money($input)" type="text" label="How much are you willing to invest?" x-model={"value.newInvestments"} name="newInvestments" required/>
+							}} price x-mask:dynamic="$money($input)" type="text" label="Amount of investment per deal" x-model={"value.newInvestments"} name="newInvestments" required/>
 							<div class="button-wrapper">
 								<Button type="submit">Next</Button>
 							</div>
 						</Step>
 						<Step title="Number of Investments" step={2}>
-							<Input type="number" step="1" label="How many times per year?" x-model={"value.numberOfInvestments"} name="numberOfInvestments" required/>
+							<Input type="number" step="1" label="Number of Investments Per Year" x-model={"value.numberOfInvestments"} name="numberOfInvestments" required/>
 							<div class="button-wrapper">
 								<Button class="button is-secondary" @click="--step">Back</Button>
 								<Button type="submit">Next</Button>
