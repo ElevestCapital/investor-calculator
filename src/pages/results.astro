@@ -16,7 +16,7 @@ import PriceBars from '../components/PriceBars.astro';
           <a class="link" href="/">← GO BACK</a>
           <div class="title-wrapper">
             <p class="title">
-              Congratulations… Here is your Blueprint
+              Here is your Blueprint based on the amount of investment per deal and the number of investments per year below
             </p>
           </div>
         </div>
@@ -30,7 +30,9 @@ import PriceBars from '../components/PriceBars.astro';
           </Form>
         </div>
       </div>
-      <Accordion title="Ending Investment Balance" data="endingInvestedBalance" color="var(--teal-dark)"/>
+      <!-- 
+      <Accordion title="Total Invested" data="totalInvested" color="var(--teal-dark)"/>
+      -->
       <Accordion title="Approximate Monthly Cashflow" data="cashFlow" color="var(--teal-dark)"/>
       <PriceBars/>
     </div>

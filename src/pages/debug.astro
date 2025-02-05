@@ -1,4 +1,6 @@
-export default function calculator(){
+---
+import Layout from "../layouts/Layout.astro";
+function calculator(){
   const urlParams = new URLSearchParams(window.location.search);
   const initial = {
     newInvestments: urlParams.get('newInvestments') ?? 1000000,
@@ -49,7 +51,7 @@ export default function calculator(){
     numberOfInvestments: initial.numberOfInvestments,
     total: 0,
     priceToNumber(value: any){
-      return parseInt(value.split(',').join(''))
+      return value //parseInt(value.split(',').join(''))
     },
     numberToPrice(value: any, cent = true){
       let [dollars, cents] = parseFloat(value).toFixed(2).split('.')
@@ -105,3 +107,52 @@ export default function calculator(){
     }
   } 
 }
+
+---
+
+<Layout>
+  <div x-data={calculator}>
+  <label>
+    New Investments
+    <input type="text" x-model="newInvestments">
+  </label>
+
+  <label>
+    Number of Investments
+    <input type="text" x-model="numberOfInvestments">
+  </label>
+
+<table>
+  <tr>
+    <th>Year</th>
+    <th>Total invested</th>
+    <th>Preffered Return</th>
+    <th>Profits On Sale</th>
+    <th>Ending Invested Balance</th>
+    <th>Cash Flow</th>
+  </tr>
+  <template x-for="(year, i) in years">
+    <tr>
+      <td x-text="'year' + i"></td>
+      <td>
+        $ <span x-text="year.totalInvested"></span>
+      </td>
+      <td>
+        $ <span x-text="year.prefferedReturn"></span>
+      </td>
+      <td>
+        $ <span x-text="year.profitsOnSale"></span>
+      </td>
+      <td>
+        $ <span x-text="year.endingInvestedBalance"></span>
+      </td>
+      <td>
+        $ <span x-text="year.cashFlow"></span>
+      </td>
+    </tr>
+  </template>
+</table>
+
+</div>
+
+</Layout>
