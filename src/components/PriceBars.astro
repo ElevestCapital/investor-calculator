@@ -1,28 +1,42 @@
-<div class="price-scroll">
-  <div class="price-bar-group">
-    <template x-for="(year, i) in selectedYears">
-      <div class="price-bar-wrapper">
-        <div class="price-bar" :style="{'--value': year.endingInvestedBalance, '--maxValue': 100000000}">
-          <div class="popup">
-            <span x-text="'$ ' + numberToPrice(year.endingInvestedBalance, false)"></span>            
+<div class="price-scroll-wrapper">
+  <div class="price-scroll">
+    <div class="price-bar-group">
+      <template x-for="(year, i) in selectedYears">
+        <div class="price-bar-wrapper">
+          <div class="price-bar" :style="{'--value': year.endingInvestedBalance, '--maxValue': 100000000}">
+            <div class="popup">
+              <span x-text="'$ ' + numberToPrice(year.endingInvestedBalance, false)"></span>            
+            </div>
           </div>
+          <div>Year</div>
+          <div style="opacity: 0.5" x-text="year.number"></div>
         </div>
-        <div>Year</div>
-        <div style="opacity: 0.5" x-text="year.number"></div>
-      </div>
-    </template>
+      </template>
+    </div>
   </div>
-  <h4>Approximate Ending Investment Balance By Year</h4>
+  <h4>Approximate Ending Investment Balance By Year</h4>  
 </div>
 
 <style>
+  .price-scroll-wrapper {
+    position: relative;
+    height: 40rem;
+    overflow: hidden;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  
+  @media (max-width: 1200px) {
+    .price-scroll-wrapper {
+      height: 25rem;
+    }    
+  }
+  
   .price-scroll {
-    overflow-x: scroll;
+    overflow-x: auto;
     display: flex;
     flex-direction: column;
-    padding: 4rem 2rem;
     align-items: stretch;
-    text-align: center;
     max-width: 40rem;
     margin-left: auto;
 
