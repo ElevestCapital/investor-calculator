@@ -33,7 +33,9 @@ import PriceBars from '../components/PriceBars.astro';
       <!-- 
       <Accordion title="Total Invested" data="totalInvested" color="var(--teal-dark)"/>
       -->
-      <Accordion title="Approximate Monthly Cashflow" data="cashFlow" color="var(--teal-dark)"/>
+      <div class="float">
+        <Accordion title="Approximate Monthly Cashflow" data="cashFlow" color="var(--teal-dark)"/>
+      </div>
       <PriceBars/>
     </div>
   </Container>
@@ -41,6 +43,16 @@ import PriceBars from '../components/PriceBars.astro';
 
 
 <style lang="scss">
+
+  .float {
+    height: 1rem;
+
+     @media (max-width: 1200px) {
+      height: fit-content;
+    }
+
+    z-index: 9999;
+  }
   
   .form-wrapper {
     display: flex;
@@ -92,6 +104,9 @@ import PriceBars from '../components/PriceBars.astro';
     display: flex;
     flex-direction: column;
     gap: 4rem ;
+
+    grid-row-start: 1;
+    grid-row-end: 3;
     
     @media (max-width: 1200px) {
       grid-column-start: 1;
