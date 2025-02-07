@@ -2,24 +2,36 @@
   <div class="price-bar-group">
     <template x-for="(year, i) in selectedYears">
       <div class="price-bar-wrapper">
-        <div class="price-bar" :style="{'--value': year.cashFlow, '--maxValue': 1000000}">
+        <div class="price-bar" :style="{'--value': year.endingInvestedBalance, '--maxValue': 100000000}">
           <div class="popup">
-            <span x-text="'$ ' + numberToPrice(year.cashFlow, false)"></span>            
+            <span x-text="'$ ' + numberToPrice(year.endingInvestedBalance, false)"></span>            
           </div>
         </div>
         <div>Year</div>
         <div style="opacity: 0.5" x-text="year.number"></div>
       </div>
     </template>
-    
   </div>
+  <h4>Approximate Ending Investment Balance By Year</h4>
 </div>
 
 <style>
   .price-scroll {
     overflow-x: scroll;
-  }
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 2rem;
+    align-items: stretch;
+    text-align: center;
+    max-width: 40rem;
+    margin-left: auto;
 
+    @media (max-width: 1200px) {
+      padding: 1rem;
+      max-width: 100%;
+    }
+  }
+  
   .year-number {
     width: 100%;
     text-align: center;
@@ -27,18 +39,23 @@
   
   .popup {
     position: absolute;
-    top: -5rem;
+    top: -2rem;
     display: none;
+    width: 8em;
+    height: 4rem;
     z-index: 9;
     padding: 1rem;
-    padding-bottom: 3rem;
+    padding-top: 0.7rem;
+    padding-left: 0.8rem;
     color: var(--color-teal-dark);
     background: url('/balloon.svg');
     background-size: 100%;
+    background-position: top;
     background-repeat: no-repeat;
     text-wrap: nowrap;
+    text-align: center;
   }
-
+  
   .price-bar-wrapper {
     position: relative;
     grid-column-start: 2;
@@ -62,7 +79,7 @@
     display: flex;
     gap: 1rem;
     height: 0px;
-    position: absolute;
+    position: static;
     left: auto;
     right: 0;
     bottom: 0;
@@ -114,5 +131,10 @@
     pointer-events: all;
     border-radius: 0.5rem 0.5rem 0 0;
     transition: var(--transition);
+  }
+  
+  .price-bar:hover {
+    transition: none;
+    background-color: var(--color-teal-dark);
   }
 </style>

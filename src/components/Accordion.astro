@@ -14,13 +14,11 @@ function accordion(){
 }
 ---
 
-<div class="accordion" x-data={accordion}>
-  <div @click="toggle">
+<div class="accordion">
+  <div>
     <div class="accordion-toggle">
       {Astro.props.title}
-      <svg :style="{'transform': open ? 'rotate(90deg)' : 'rotate(0deg)'}" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6L8.59 7.41Z" fill="currentColor"/></svg>
     </div>
-    <h2 x-text={`'$ ' + ${maxValue}`}></h2>
   </div>
   <div class="accordion-content" :class="{'open': open}" >
     <template x-for="(year, i) in selectedYears">
@@ -49,6 +47,14 @@ function accordion(){
   cursor: pointer;
   transition: var(--transition);
   transition-duration: 0.1;
+  width: fit-content;
+  margin-left: auto;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
 }
 
 .open {
@@ -61,6 +67,7 @@ function accordion(){
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-weight: bold;
 }
 
 .accordion-pricing {

@@ -18,6 +18,10 @@ const klass = 'button ' + Astro.props.class
     cursor: pointer;
     animation: var(--animation-fade);
 
+    &:hover {
+      background: var(--color-teal-gradient);
+    }
+
     &.is-secondary {
       color: transparent;
       background-clip: text;

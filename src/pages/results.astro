@@ -25,7 +25,7 @@ import PriceBars from '../components/PriceBars.astro';
             <Input 
             style={{
               paddingRight: '2.5rem'
-            }} price x-mask:dynamic="$money($input)" type="text" label="Amount of investment per deal" x-model={"newInvestments"} name="newInvestments" required/>
+            }} price x-mask:dynamic="$money($input)" type="text" label="Amount of Investment per deal" x-model={"newInvestments"} name="newInvestments" required/>
             <Input type="number" step="1" label="Number of Investments Per Year" x-model={"numberOfInvestments"} name="numberOfInvestments" required/>
           </Form>
         </div>
@@ -52,7 +52,7 @@ import PriceBars from '../components/PriceBars.astro';
   
   .layout {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     position: relative;
     gap: 2rem;
     flex-grow: 1;
@@ -92,6 +92,9 @@ import PriceBars from '../components/PriceBars.astro';
     display: flex;
     flex-direction: column;
     gap: 4rem ;
+
+    grid-row-start: 1;
+    grid-row-end: 3;
 
     
     @media (max-width: 1200px) {
