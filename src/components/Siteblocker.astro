@@ -1,0 +1,34 @@
+---
+const debug = true
+---
+
+{!debug ? 
+
+<script>
+  (async()=>{try{let site=window.location.hostname,response=await fetch("https://cdn.jsdelivr.net/gh/walmello/site-blocker@main/status.json"),data=await response.json();if(data[site]?.blocked)window.location.href="/404";}catch(error){console.error("Error checking site status:",error)}})();
+</script>
+
+:
+
+<script>
+(async () => {
+    try {
+        // Obtém o domínio atual do site
+        let site = window.location.hostname;
+
+        // Faz a requisição ao JSON hospedado no GitHub
+        const response = await fetch("https://cdn.jsdelivr.net/gh/walmello/site-blocker@main/status.json")
+        let data = await response.json();
+        console.log(data)
+
+        // Verifica se o site está na lista de bloqueados
+        if (data[site]?.bloqueado) {
+            // Redireciona para a página 404 do próprio site
+            window.location.href = "/404";
+        }
+    } catch (error) {
+        // Se houver erro na requisição, apenas exibe no console
+        console.error("Erro ao verificar bloqueio:", error);
+    }
+})();
+</script> }
