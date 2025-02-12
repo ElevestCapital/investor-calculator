@@ -35,8 +35,8 @@ import PriceBars from '../components/PriceBars.astro';
       -->
       <div class="float">
         <Accordion title="Approximate Monthly Cashflow" data="cashFlow" color="var(--teal-dark)"/>
+        <Accordion title="Ending Invested Balance" data="endingInvestedBalance" color="var(--teal-dark)"/>
       </div>
-      <PriceBars/>
     </div>
   </Container>
 </Layout>
@@ -46,9 +46,13 @@ import PriceBars from '../components/PriceBars.astro';
 
   .float {
     height: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
 
      @media (max-width: 1200px) {
       height: fit-content;
+      grid-template-columns: 1fr;
     }
 
     z-index: 9999;
