@@ -8,68 +8,135 @@ import Button from '../components/form/Button.astro';
 import Container from '../components/Container.astro';
 import Background from '../components/form/Background.astro';
 ---
-
+<head>
+    <script
+        src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        defer></script>
+</head>
 <Layout>
-	<Container>
-		<div class="layout">
-			<h1 class="title">Let’s Build Your Blueprint to Long Term Wealth and Passive Income Through Multifamily Real Estate Investing</h1>
-			<div class="form-wrapper">
-				<Background/>
-				<Form>
-					<Slider>
-						<Step title="New Investments" step={1}>
-							<Input style={{
-								paddingRight: '2.5rem'
-							}} price x-mask:dynamic="$money($input)" type="text" label="Amount of Investment Per Deal" x-model={"value.newInvestments"} name="newInvestments" required/>
-							<div class="button-wrapper">
-								<Button type="submit">Next</Button>
-							</div>
-						</Step>
-						<Step title="Number of Investments" step={2}>
-							<Input type="number" step="1" label="Number of Investments Per Year" x-model={"value.numberOfInvestments"} name="numberOfInvestments" required/>
-							<div class="button-wrapper">
-								<Button class="button is-secondary" @click="--step">Back</Button>
-								<Button type="submit">Next</Button>
-							</div>
-						</Step>
-					</Slider>
-				</Form>
-			</div>
-		</div>
-	</Container>
+    <Container>
+        <div
+            class="layout"
+            x-data="{ value: { oneTimePayment: '', multipleTimePayment: '' } }"
+        >
+            <h1 class="title">
+                Let's Build Your Blueprint to Long Term Wealth and Passive
+                Income Through Multifamily Real Estate Investing
+            </h1>
+            <div class="form-wrapper">
+                <Background />
+                <Form>
+                    <Slider>
+                        <Step title="Choose Your Investment Plan" step={1}>
+                            <div class="infographic">
+                                <Input
+                                    type="radio"
+                                    label="One Time Investment"
+                                    x-model="value.oneTimePayment"
+                                    name="paymentType"
+                                    value="oneTimePayment"
+                                    class="radio"
+                                    required
+                                />
+                                <Input
+                                    type="radio"
+                                    label="Anual Investment"
+                                    x-model="value.multipleTimePayment"
+                                    name="paymentType"
+                                    value="multipleTimePayment"
+                                    class="radio"
+                                />
+                            </div>
+                            <div class="button-wrapper">
+                                <Button type="submit">Next</Button>
+                            </div>
+                        </Step>
+                        <Step title="New Investments" step={2}>
+                            <Input
+                                style={{
+                                    paddingRight: '2.5rem',
+                                }}
+                                price
+                                x-mask:dynamic="$money($input)"
+                                type="text"
+                                label="Amount of Investment Per Deal"
+                                x-model="value.newInvestments"
+                                name="newInvestments"
+                                required
+                            />
+                            <div class="button-wrapper">
+                                <Button type="submit">Next</Button>
+                            </div>
+                        </Step>
+                        <Step title="Number of Investments" step={3}>
+                            <Input
+                                type="number"
+                                step="1"
+                                label="Number of Investments Per Year"
+                                x-model="value.numberOfInvestments"
+                                name="numberOfInvestments"
+                                required
+                            />
+                            <div class="button-wrapper">
+                                <Button
+                                    class="button is-secondary"
+                                    @click="--step">Back</Button
+                                >
+                                <Button type="submit">Next</Button>
+                            </div>
+                        </Step>
+                    </Slider>
+                    <Form />
+                </Form>
+            </div>
+        </div>
+    </Container>
+    <style lang="scss">
+        .title {
+            max-width: 40%;
+            @media (max-width: 767px) {
+                max-width: 100%;
+            }
+        }
+        .layout {
+            flex-grow: 1;
+            display: flex;
+            padding-top: 10rem;
+            align-items: start;
+            justify-content: center;
+            gap: 2rem;
+            @media (max-width: 767px) {
+                padding-top: 0;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                justify-content: start;
+                gap: 10rem;
+                margin-top: 5rem;
+            }
+        }
+        .form-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: var(--animation-grow);
+        }
+        .infographic {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+        .radio {
+        }
+    </style>
 </Layout>
 
-<style lang="scss">
-	.title {
-		max-width: 40%;
-		@media (max-width: 767px) {
-			max-width: 100%;
-		}
-	}
 
-	.layout {
-		flex-grow: 1;
-		display: flex;
-		padding-top: 10rem;
-		align-items: start;
-		justify-content: center;
-		gap: 2rem;
 
-		@media (max-width: 767px) {
-			padding-top: 0;
-			flex-direction: column;
-			align-items: center;
-			text-align: center;
-			justify-content: start;
-			gap: 10rem;
-			margin-top: 5rem;
-		}
-	}
 
-	.form-wrapper {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		animation: var(--animation-grow);
-	}
-</style>
+
+
+
+

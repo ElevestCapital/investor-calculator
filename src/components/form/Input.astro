@@ -1,5 +1,4 @@
 ---
-
 function input(){
   return {
     content: 'aaa',
@@ -8,9 +7,7 @@ function input(){
     }
   }
 }
-
 ---
-
 <label class="label-wrapper">
   <p class="label">{Astro.props.label}</p>
   <div class="input-wrapper">
@@ -19,46 +16,38 @@ function input(){
     {Astro.props.price ? <span class="cents">.00</span> : <></>}
   </div>
 </label>
-
 <style>
   .label {
     font-size: 1rem;
     padding-bottom: 0.5rem;
   }
-
   .input-wrapper {
     display: flex;
-    background-color: white;
     border-radius: 0.5rem;
     align-items: center;
     position: relative;
   }
-
   .price {
     color: var(--color-neutral-dark);
     padding: 1rem;
     position: absolute;
     left: 0;
   }
-
   .cents {
     color: var(--color-neutral-dark);
     padding: 1rem;
     position: absolute;
     right: 0;
   }
-
-
   .input {
     width: 100%;
     text-align: right;
-    background-color: transparent;
+    background-color: white;
     border: none;
     font-size: 1rem;
     padding: 0.8rem;
     border-radius: 0.5rem;
     color: var(--color-neutral-dark);
     font-family: var(--font-family);
-
   }
 </style>

@@ -1,128 +1,133 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Container from '../components/Container.astro';
-import calculator from "../utils/Calculator";
+import calculator from '../utils/Calculator';
 import Form from '../components/form/Form.astro';
 import Input from '../components/form/Input.astro';
 import Accordion from '../components/Accordion.astro';
 import PriceBars from '../components/PriceBars.astro';
 ---
-
 <Layout>
-  <Container>    
-    <div class="layout" x-data={calculator}>
-      <div class="col">
-        <div class="subcol">
-          <a class="link" href="/">← GO BACK</a>
-          <div class="title-wrapper">
-            <p class="title">
-              Here is Your Blueprint Based on the Amount of Investment Per Deal and The Number of Investments per Year Below
-            </p>
-          </div>
-        </div>
-        <div class="form-wrapper">
-          <Form>
-            <Input 
-            style={{
-              paddingRight: '2.5rem'
-            }} price x-mask:dynamic="$money($input)" type="text" label="Amount of Investment Per Deal" x-model={"newInvestments"} name="newInvestments" required/>
-            <Input type="number" step="1" label="Number of Investments Per Year" x-model={"numberOfInvestments"} name="numberOfInvestments" required/>
-          </Form>
-        </div>
-      </div>
-      <!-- 
+    <Container>
+        <div class="layout" x-data={calculator}>
+            <div class="col">
+                <div class="subcol">
+                    <a class="link" href="/">← GO BACK</a>
+                    <div class="title-wrapper">
+                        <p class="title">
+                            Here is Your Blueprint Based on the Amount of
+                            Investment Per Deal and The Number of Investments
+                            per Year Below
+                        </p>
+                    </div>
+                </div>
+                <div class="form-wrapper">
+                    <Form>
+                        <Input
+                            style={{
+                                paddingRight: '2.5rem',
+                            }}
+                            price
+                            x-mask:dynamic="$money($input)"
+                            type="text"
+                            label="Amount of Investment Per Deal"
+                            x-model={'newInvestments'}
+                            name="newInvestments"
+                            required
+                        />
+                        <Input
+                            type="number"
+                            step="1"
+                            label="Number of Investments Per Year"
+                            x-model={'numberOfInvestments'}
+                            name="numberOfInvestments"
+                            required
+                        />
+                    </Form>
+                </div>
+            </div>
+            <!--
       <Accordion title="Total Invested" data="totalInvested" color="var(--teal-dark)"/>
       -->
-      <div class="float">
-        <Accordion title="Approximate Monthly Cashflow" data="cashFlow" color="var(--teal-dark)"/>
-        <Accordion title="Ending Invested Balance" data="totalInvested" color="var(--teal-dark)"/>
-      </div>
-    </div>
-  </Container>
+            <div class="float">
+                <Accordion
+                    title="Approximate Monthly Cashflow"
+                    data="cashFlow"
+                    color="var(--teal-dark)"
+                />
+                <Accordion
+                    title="Ending Investment Balance"
+                    data="totalInvested"
+                    color="var(--teal-dark)"
+                />
+            </div>
+        </div>
+    </Container>
 </Layout>
-
-
 <style lang="scss">
-
-  .float {
-    height: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-
-     @media (max-width: 1200px) {
-      height: fit-content;
-      grid-template-columns: 1fr;
+    .float {
+        height: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        @media (max-width: 1200px) {
+            height: fit-content;
+            grid-template-columns: 1fr;
+        }
+        z-index: 9999;
     }
-
-    z-index: 9999;
-  }
-  
-  .form-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    z-index: 1;
-    animation: var(--animation-grow-strong);
-  }
-  
-  .layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    position: relative;
-    gap: 2rem;
-    flex-grow: 1;
-
-    @media (max-width: 1200px) {
-      display: flex;
-      flex-direction: column;
-      padding: 1rem;
+    .form-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        z-index: 1;
+        animation: var(--animation-grow-strong);
     }
-  }
-  
-  .link {
-    color: var(--color-teal-default);
-  }
-  
-  .title-wrapper {
-    z-index: 2;
-  }
-  
-  .title {
-    font-weight: 400;
-    font-size: 2rem; 
-  }
-  
-  .title span {
-    color: var(--color-orange-default);
-  }
-  
-  .eyebrow {
-    color: var(--color-orange-dark);
-    text-transform: uppercase;
-    font-size: 1rem;
-    margin: 1rem 0;
-  }
-  
-  .col {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem ;
-
-    grid-row-start: 1;
-    grid-row-end: 3;
-    
-    @media (max-width: 1200px) {
-      grid-column-start: 1;
-      grid-column-end: 3;
+    .layout {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        position: relative;
+        gap: 2rem;
+        flex-grow: 1;
+        @media (max-width: 1200px) {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+        }
     }
-
-  }
-  
-  .subcol {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
+    .link {
+        color: var(--color-teal-default);
+    }
+    .title-wrapper {
+        z-index: 2;
+    }
+    .title {
+        font-weight: 400;
+        font-size: 2rem;
+    }
+    .title span {
+        color: var(--color-orange-default);
+    }
+    .eyebrow {
+        color: var(--color-orange-dark);
+        text-transform: uppercase;
+        font-size: 1rem;
+        margin: 1rem 0;
+    }
+    .col {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        @media (max-width: 1200px) {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+    }
+    .subcol {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 </style>
