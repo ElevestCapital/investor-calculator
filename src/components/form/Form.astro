@@ -19,7 +19,7 @@ function form() {
                     const value = String(this.value.newInvestments)
                         .split(',')
                         .join('');
-                    window.location.href = `/results.html?newInvestments=${value}&numberOfInvestments=${this.value.numberOfInvestments}`;
+                    window.location.href = `/results?newInvestments=${value}&numberOfInvestments=${this.value.numberOfInvestments}&investmentType=oneTimePayment`;
                 } else {
                     this.step += 1;
                 }
@@ -27,7 +27,7 @@ function form() {
                 const value = String(this.value.newInvestments)
                     .split(',')
                     .join('');
-                window.location.href = `/results.html?newInvestments=${value}&numberOfInvestments=${this.value.numberOfInvestments}`;
+                window.location.href = `/results?newInvestments=${value}&numberOfInvestments=${this.value.numberOfInvestments}&investmentType=multipleTimePayment`;
             }
         },
         back() {
@@ -36,6 +36,7 @@ function form() {
     };
 }
 ---
+
 <div class="card">
     <form class="form" x-data={form} @submit.prevent="submit">
         <slot />

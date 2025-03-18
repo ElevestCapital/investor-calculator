@@ -5,8 +5,8 @@ import calculator from '../utils/Calculator';
 import Form from '../components/form/Form.astro';
 import Input from '../components/form/Input.astro';
 import Accordion from '../components/Accordion.astro';
-import PriceBars from '../components/PriceBars.astro';
 ---
+
 <Layout>
     <Container>
         <div class="layout" x-data={calculator}>
@@ -35,20 +35,19 @@ import PriceBars from '../components/PriceBars.astro';
                             name="newInvestments"
                             required
                         />
-                        <Input
-                            type="number"
-                            step="1"
-                            label="Number of Investments Per Year"
-                            x-model={'numberOfInvestments'}
-                            name="numberOfInvestments"
-                            required
-                        />
+                        <template x-if="investmentType !== 'oneTimePayment'">
+                            <Input
+                                type="number"
+                                step="1"
+                                label="Number of Investments Per Year"
+                                x-model={'numberOfInvestments'}
+                                name="numberOfInvestments"
+                                required
+                            />
+                        </template>
                     </Form>
                 </div>
             </div>
-            <!--
-      <Accordion title="Total Invested" data="totalInvested" color="var(--teal-dark)"/>
-      -->
             <div class="float">
                 <Accordion
                     title="Approximate Monthly Cashflow"
@@ -57,7 +56,7 @@ import PriceBars from '../components/PriceBars.astro';
                 />
                 <Accordion
                     title="Ending Investment Balance"
-                    data="totalInvested"
+                    data="endingInvestedBalance"
                     color="var(--teal-dark)"
                 />
             </div>
@@ -70,11 +69,11 @@ import PriceBars from '../components/PriceBars.astro';
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
+        z-index: 9999;
         @media (max-width: 1200px) {
             height: fit-content;
             grid-template-columns: 1fr;
         }
-        z-index: 9999;
     }
     .form-wrapper {
         display: flex;
