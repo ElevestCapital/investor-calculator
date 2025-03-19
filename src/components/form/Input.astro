@@ -26,6 +26,7 @@ function input(){
     border-radius: 0.5rem;
     align-items: center;
     position: relative;
+    justify-content: center;
   }
   .price {
     color: var(--color-neutral-dark);
@@ -49,5 +50,11 @@ function input(){
     border-radius: 0.5rem;
     color: var(--color-neutral-dark);
     font-family: var(--font-family);
+  }
+
+  @media screen and (min-width: 768px) {
+    .input-wrapper {
+      justify-content: start;
+    }
   }
 </style>

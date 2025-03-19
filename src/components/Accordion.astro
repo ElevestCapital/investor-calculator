@@ -1,115 +1,122 @@
 ---
+const data = Astro.props.data;
+const maxValue = `numberToPrice(years()[30].${data})`;
+const value = `numberToPrice(year.${data})`;
 
-const data = Astro.props.data
-const maxValue = `numberToPrice(years()[30].${data})`
-const value = `numberToPrice(year.${data})`
-
-function accordion(){
-  return {
-    open: true,
-    toggle(){
-      this.open = !this.open
-    }
-  }
+function accordion() {
+    return {
+        open: true,
+        toggle() {
+            this.open = !this.open;
+        },
+    };
 }
 ---
 
 <div class="accordion" x-data={accordion}>
-  <div @click="toggle">
-    <div class="accordion-toggle">
-      {Astro.props.title}
-      <svg :style="{'transform': open ? 'rotate(90deg)' : 'rotate(0deg)'}" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6L8.59 7.41Z" fill="currentColor"/></svg>
-    </div>
-  </div>
-  <div class="accordion-content" :class="{'open': open}" >
-    <template x-for="(year, i) in selectedYears">
-      <div class="accordion-item">
-        <span x-text="'Year ' + year.number"></span>
-        <div>
-        $ <span x-text={value}></span>
+    <div @click="toggle">
+        <div class="accordion-toggle">
+            {Astro.props.title}
+            <svg
+                :style="{'transform': open ? 'rotate(90deg)' : 'rotate(0deg)'}"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                ><path
+                    d="M8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6L8.59 7.41Z"
+                    fill="currentColor"></path></svg
+            >
         </div>
-      </div>
-    </template>
-  </div>
+    </div>
+    <div class="accordion-content" :class="{'open': open}">
+        <template x-for="(year, i) in selectedYears">
+            <div class="accordion-item">
+                <span x-text="'Year ' + year.number"></span>
+                <div>
+                    $ <span x-text={value}></span>
+                </div>
+            </div>
+        </template>
+    </div>
 </div>
 
 <style>
-  
-.accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  border: 1px solid var(--color-teal-dark);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  height: fit-content;
-  background-color: var(--color-neutral-light);
-  z-index: 3;
-  transition: var(--transition);
-  transition-duration: 0.1;
-  width: fit-content;
-  margin-right: auto;
-  transition: var(--transition);
-}
+    .accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border: 1px solid var(--color-teal-dark);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        height: fit-content;
+        background-color: var(--color-neutral-light);
+        z-index: 3;
+        transition: var(--transition);
+        transition-duration: 0.1;
+        width: fit-content;
+        margin-right: auto;
+        transition: var(--transition);
+    }
 
-.accordion:hover {
-  border: 1px solid var(--color-orange-dark);
-}
+    .accordion:hover {
+        border: 1px solid var(--color-orange-dark);
+    }
 
-.accordion:hover .accordion-toggle {
-  color: var(--color-orange-dark);
-}
+    .accordion:hover .accordion-toggle {
+        color: var(--color-orange-dark);
+    }
 
-.accordion-toggle {
-  transition: var(--transition);
-  cursor: pointer;
-}
+    .accordion-toggle {
+        transition: var(--transition);
+        cursor: pointer;
+    }
 
-@media (max-width: 1200px) {
-  .accordion {
-    width: 100%;
-  }
-}
+    @media (max-width: 1200px) {
+        .accordion {
+            width: 100%;
+        }
+    }
 
-.open {
-  transition: var(--transition);
-  height: 18em !important;
-}
+    .open {
+        transition: var(--transition);
+        height: 18em !important;
+    }
 
-.accordion-toggle {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-weight: bold;
-}
+    .accordion-toggle {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-weight: bold;
+    }
 
-.accordion-pricing {
-  font-size: 2rem;
-}
+    .accordion-pricing {
+        font-size: 2rem;
+    }
 
-.accordion-title {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
+    .accordion-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+    }
 
-.accordion-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  overflow: hidden;
-  height: 0px;
-  transition: var(--transition);
-}
+    .accordion-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        overflow: hidden;
+        height: 0px;
+        transition: var(--transition);
+    }
 
-.accordion-item {
-  display: flex;
-  justify-content: space-between;
-}
+    .accordion-item {
+        display: flex;
+        justify-content: space-between;
+    }
 
-.accordion-item:hover {
-}
-
-
+    .accordion-item:hover {
+        color: var(--color-orange-dark);
+    }
 </style>
