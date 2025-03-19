@@ -114,9 +114,14 @@ function accordion() {
     .accordion-item {
         display: flex;
         justify-content: space-between;
+        padding: 0 0.5rem;
+        transition: var(--transition);
+        border-radius: 0.5rem;
+        cursor: pointer;
     }
 
     .accordion-item:hover {
-        color: var(--color-orange-dark);
+        color: var(--color-neutral-light);
+        background-color: var(--color-orange-dark);
     }
 </style>
