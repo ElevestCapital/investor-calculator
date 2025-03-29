@@ -1,8 +1,5 @@
 ---
 const data = Astro.props.data;
-const maxValue = `numberToPrice(years()[30].${data})`;
-const value = `numberToPrice(year.${data})`;
-
 function accordion() {
     return {
         open: true,
@@ -24,18 +21,26 @@ function accordion() {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                ><path
-                    d="M8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6L8.59 7.41Z"
-                    fill="currentColor"></path></svg
             >
+                <path
+                    d="M8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6L8.59 7.41Z"
+                    fill="currentColor"></path>
+            </svg>
         </div>
     </div>
     <div class="accordion-content" :class="{'open': open}">
-        <template x-for="(year, i) in selectedYears">
-            <div class="accordion-item">
-                <span x-text="'Year ' + i"></span>
-                <div>
-                    $ <span x-text={value}></span>
+        <div class="table-header">
+            <div>Year</div>
+            <div>Monthly Cashflow</div>
+            <div>Annual Cashflow</div>
+            <div>Equity Investment Balance</div>
+        </div>
+        <template x-for="(year, i) in singleFamilySelectedYears">
+            <div class="table-row">
+                <div x-text="'Year ' +  year.number"></div>
+                <div x-text="'$ ' + numberToPrice(year.cashFlow)"></div>
+                <div x-text="'$ ' + numberToPrice(year.anualCashflow)"></div>
+                <div x-text="'$ ' + numberToPrice(year.endingInvestedBalance)">
                 </div>
             </div>
         </template>
@@ -53,11 +58,9 @@ function accordion() {
         height: fit-content;
         background-color: var(--color-neutral-light);
         z-index: 3;
-        transition: var(--transition);
         transition-duration: 0.1;
-        width: fit-content;
-        margin-right: auto;
         transition: var(--transition);
+        width: 100%;
     }
 
     .accordion:hover {
@@ -71,20 +74,6 @@ function accordion() {
     .accordion-toggle {
         transition: var(--transition);
         cursor: pointer;
-    }
-
-    @media (max-width: 1200px) {
-        .accordion {
-            width: 100%;
-        }
-    }
-
-    .open {
-        transition: var(--transition);
-        height: 18em !important;
-    }
-
-    .accordion-toggle {
         width: 100%;
         display: flex;
         flex-direction: row;
@@ -92,35 +81,40 @@ function accordion() {
         font-weight: bold;
     }
 
-    .accordion-pricing {
-        font-size: 2rem;
-    }
-
-    .accordion-title {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.5rem;
-    }
-
     .accordion-content {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.3rem;
         overflow: hidden;
-        height: 0px;
+        height: 0;
         transition: var(--transition);
     }
 
-    .accordion-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 0.5rem;
+    .open {
+        transition: var(--transition);
+        height: 24em !important;
+    }
+
+    .table-header,
+    .table-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+        padding: 0.2rem;
+    }
+
+    .table-header {
+        font-weight: bold;
+        border-bottom: 1px solid var(--color-teal-dark);
+    }
+
+    .table-row {
         transition: var(--transition);
         border-radius: 0.5rem;
         cursor: pointer;
     }
 
-    .accordion-item:hover {
+    .table-row:hover {
         color: var(--color-neutral-light);
         background-color: var(--color-orange-dark);
     }

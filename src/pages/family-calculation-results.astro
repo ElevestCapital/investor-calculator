@@ -1,60 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Container from '../components/Container.astro';
-import calculator from '../utils/Calculator';
-import Form from '../components/form/Form.astro';
-import Input from '../components/form/Input.astro';
-import Accordion from '../components/Accordion.astro';
+import familyCalculator from '../utils/FamilyCalculator';
+import MultiFamilyAccordion from '../components/MultiFamilyAccordion.astro';
+import SingleFamilyAccordion from '../components/SingleFamilyAccordion.astro';
 ---
 
 <Layout>
     <Container>
-        <div class="layout" x-data={calculator}>
+        <div class="layout" x-data={familyCalculator}>
             <div class="col">
                 <div class="subcol">
-                    <a class="link" href="/">← GO BACK</a>
+                    <a class="link" href="/family-questionnaire">← GO BACK</a>
                     <div class="title-wrapper">
                         <p class="title">
-                            Here is Your Blueprint Based on the Amount of
-                            Investment Per Deal and The Number of Investments
-                            per Year Below
+                            Here is your Current Portfolio VS. Multifamily
+                            Passive Investment Portfolio
                         </p>
                     </div>
                 </div>
-                <div class="form-wrapper">
-                    <Form>
-                        <Input
-                            price
-                            x-mask:dynamic="$money($input)"
-                            type="text"
-                            label="Amount of Investment Per Deal"
-                            x-model={'newInvestments'}
-                            name="newInvestments"
-                            required
-                        />
-                        <template x-if="investmentType !== 'oneTimePayment'">
-                            <Input
-                                type="number"
-                                step="1"
-                                label="Number of Investments Per Year"
-                                x-model={'numberOfInvestments'}
-                                name="numberOfInvestments"
-                                required
-                            />
-                        </template>
-                    </Form>
-                </div>
             </div>
             <div class="float">
-                <Accordion
-                    title="Approximate Monthly Cashflow"
-                    data="cashFlow"
-                    color="var(--teal-dark)"
+                <SingleFamilyAccordion
+                    title="Current Portfolio Approximate Return"
                 />
-                <Accordion
-                    title="Approximate Investment Equity Balance"
-                    data="endingInvestedBalance"
-                    color="var(--teal-dark)"
+                <MultiFamilyAccordion
+                    title="Multifamily Passive Investment Portfolio"
                 />
             </div>
         </div>
@@ -64,7 +35,7 @@ import Accordion from '../components/Accordion.astro';
     .float {
         height: 1rem;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         gap: 1rem;
         z-index: 9999;
         @media (max-width: 1200px) {

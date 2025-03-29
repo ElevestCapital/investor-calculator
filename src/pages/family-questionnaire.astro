@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Step from '../components/form/Step.astro';
+import Input from '../components/form/Input.astro';
+import Slider from '../components/form/Slider.astro';
+import Button from '../components/form/Button.astro';
+import Container from '../components/Container.astro';
+import Background from '../components/form/Background.astro';
+import FamilyQuestionnaireForm from '../components/form/FamilyQuestionnaireForm.astro';
+---
+
+<head>
+    <script
+        src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        defer></script>
+</head>
+<Layout>
+    <Container>
+        <div
+            class="layout"
+            x-data="{ value: { oneTimePayment: '', multipleTimePayment: '' } }"
+        >
+            <h1 class="title">
+                Let's Build Your Blueprint to Long Term Wealth and Passive
+                Income Through Multifamily Real Estate Investing
+            </h1>
+            <div class="form-wrapper">
+                <Background />
+                <FamilyQuestionnaireForm>
+                    <Slider>
+                        <Step
+                            title="How many properties do you currently own?"
+                            step={1}
+                        >
+                            <Input
+                                type="text"
+                                label="Number of Properties Owned"
+                                x-model="value.numberOfProperties"
+                                name="numberOfProperties"
+                                required
+                            />
+                            <div>
+                                <Button @click="nextStep">Next</Button>
+                            </div>
+                        </Step>
+                        <Step
+                            title="How much monthly cashflow do you receive on all properties?"
+                            step={2}
+                        >
+                            <Input
+                                type="text"
+                                price
+                                x-mask:dynamic="$money($input)"
+                                label="Monthly Cashflow"
+                                x-model="value.monthlyCashflow"
+                                name="monthlyCashflow"
+                                required
+                            />
+                            <div>
+                                <Button @click="back">Back</Button>
+                                <Button @click="nextStep">Next</Button>
+                            </div>
+                        </Step>
+                        <Step
+                            title="What is the total value of all properties?"
+                            step={3}
+                        >
+                            <Input
+                                type="text"
+                                price
+                                x-mask:dynamic="$money($input)"
+                                label="Total Value of Properties"
+                                x-model="value.totalValue"
+                                name="totalValue"
+                                required
+                            />
+                            <div>
+                                <Button @click="back">Back</Button>
+                                <Button @click="nextStep">Next</Button>
+                            </div>
+                        </Step>
+                        <Step
+                            title="What is the total amount you owe on all properties?"
+                            step={4}
+                        >
+                            <Input
+                                type="text"
+                                price
+                                x-mask:dynamic="$money($input)"
+                                label="Total Amount Owed"
+                                x-model="value.totalOwed"
+                                name="totalOwed"
+                                required
+                            />
+                            <div>
+                                <Button @click="back">Back</Button>
+                                <Button @click="submit">Submit</Button>
+                            </div>
+                        </Step>
+                    </Slider>
+                </FamilyQuestionnaireForm>
+            </div>
+        </div>
+    </Container>
+    <style lang="scss">
+        .title {
+            max-width: 40%;
+            @media (max-width: 767px) {
+                max-width: 100%;
+            }
+        }
+        .layout {
+            flex-grow: 1;
+            display: flex;
+            padding-top: 10rem;
+            align-items: start;
+            justify-content: center;
+            gap: 2rem;
+            @media (max-width: 767px) {
+                padding-top: 0;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                justify-content: start;
+                gap: 10rem;
+                margin-top: 5rem;
+            }
+        }
+        .form-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: var(--animation-grow);
+        }
+        .infographic {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+        .radio {
+        }
+    </style>
+</Layout>

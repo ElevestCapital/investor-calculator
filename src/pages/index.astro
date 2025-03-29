@@ -41,7 +41,7 @@ import Background from '../components/form/Background.astro';
                                 />
                                 <Input
                                     type="radio"
-                                    label="Anual Investment"
+                                    label="Annual Investment"
                                     x-model="value.multipleTimePayment"
                                     name="paymentType"
                                     value="multipleTimePayment"
@@ -54,9 +54,6 @@ import Background from '../components/form/Background.astro';
                         </Step>
                         <Step title="New Investments" step={2}>
                             <Input
-                                style={{
-                                    paddingRight: '2.5rem',
-                                }}
                                 price
                                 x-mask:dynamic="$money($input)"
                                 type="text"
@@ -64,6 +61,7 @@ import Background from '../components/form/Background.astro';
                                 x-model="value.newInvestments"
                                 name="newInvestments"
                                 required
+                                autofocus
                             />
                             <div class="button-wrapper">
                                 <Button type="submit">Next</Button>
@@ -77,6 +75,7 @@ import Background from '../components/form/Background.astro';
                                 x-model="value.numberOfInvestments"
                                 name="numberOfInvestments"
                                 required
+                                autofocus
                             />
                             <div class="button-wrapper">
                                 <Button

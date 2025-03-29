@@ -1,9 +1,13 @@
 ---
 function input(){
   return {
-    content: 'aaa',
+    content: '',
     valueAsNumber(){
-      return this.content
+      return this.content.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    updateContent(event:any) {
+      this.content = event.target.value.replace(/,/g, '');
+      event.target.value = this.valueAsNumber();
     }
   }
 }
@@ -12,8 +16,7 @@ function input(){
   <p class="label">{Astro.props.label}</p>
   <div class="input-wrapper">
     {Astro.props.price ? <span class="price">$</span> : <></>}
-    <input {...Astro.props} x-data={input} x-model="value" class="input">
-    {Astro.props.price ? <span class="cents">.00</span> : <></>}
+    <input {...Astro.props} x-data={input} x-model="content" x-on:input="updateContent" class="input" autofocus>
   </div>
 </label>
 <style>

@@ -1,8 +1,8 @@
 export default function calculator() {
     const urlParams = new URLSearchParams(window.location.search);
     const initial = {
-        newInvestments: urlParams.get('newInvestments') ?? 1_000_000,
-        numberOfInvestments: urlParams.get('numberOfInvestments') ?? 1,
+        newInvestments: urlParams.get('newInvestments') ?? '',
+        numberOfInvestments: urlParams.get('numberOfInvestments') ?? '',
         investmentType: urlParams.get('investmentType') ?? 'oneTimePayment',
     };
     const prefferedReturn = (totalInvested: number, prefReturn = 0.06) =>
@@ -105,7 +105,7 @@ export default function calculator() {
                 return {
                     1: years[1],
                     2: years[2],
-                    3: years[3],
+                    3: years[2],
                     4: years[4],
                     5: years[5],
                     10: years[10],
