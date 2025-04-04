@@ -35,7 +35,6 @@ export default function calculator() {
                         : holdenYear.profitsOnSale * targetEM;
             }
         } else {
-            // Original recurring investment logic
             if (years.length >= holdTime) {
                 profitsOnSale =
                     (holdenYear.profitsOnSale - newInvestments) * targetEM +
@@ -116,16 +115,46 @@ export default function calculator() {
                 };
             }
             return {
-                1: years[1],
-                2: years[2],
-                3: years[3],
-                4: years[4],
-                5: years[5],
-                10: years[10],
-                15: years[15],
-                20: years[20],
-                25: years[25],
-                30: years[30],
+                1: {
+                    ...years[1],
+                    endingInvestedBalance: years[0].endingInvestedBalance,
+                },
+                2: {
+                    ...years[2],
+                    endingInvestedBalance: years[1].endingInvestedBalance,
+                },
+                3: {
+                    ...years[3],
+                    endingInvestedBalance: years[2].endingInvestedBalance,
+                },
+                4: {
+                    ...years[4],
+                    endingInvestedBalance: years[3].endingInvestedBalance,
+                },
+                5: {
+                    ...years[5],
+                    endingInvestedBalance: years[4].endingInvestedBalance,
+                },
+                10: {
+                    ...years[10],
+                    endingInvestedBalance: years[9].endingInvestedBalance,
+                },
+                15: {
+                    ...years[15],
+                    endingInvestedBalance: years[14].endingInvestedBalance,
+                },
+                20: {
+                    ...years[20],
+                    endingInvestedBalance: years[19].endingInvestedBalance,
+                },
+                25: {
+                    ...years[25],
+                    endingInvestedBalance: years[24].endingInvestedBalance,
+                },
+                30: {
+                    ...years[30],
+                    endingInvestedBalance: years[29].endingInvestedBalance,
+                },
             };
         },
     };

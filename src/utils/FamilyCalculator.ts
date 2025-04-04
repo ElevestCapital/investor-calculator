@@ -47,10 +47,10 @@ export default function calculator() {
 
         let endingInvestedBalance = totalInvested + profitsOnSale;
 
-        // Add equity increase every 3 years
+        // Add equity increase every 3 years starting from year 2
         if (
-            (years.length + 1) % singleFamilyConfig.equityIncreaseInterval ===
-            0
+            years.length > 1 && // Skip year 1
+            (years.length + 1) % singleFamilyConfig.equityIncreaseInterval === 0
         ) {
             endingInvestedBalance *=
                 1 + singleFamilyConfig.equityIncreasePercent;
@@ -75,12 +75,14 @@ export default function calculator() {
         const prefferedReturn = totalInvested * multiFamilyConfig.returnPercent;
         let profitsOnSale = 0;
 
-        if (years.length >= holdTime) {
+        if (years.length % 3 === 0) {
             profitsOnSale =
-                (holdenYear.profitsOnSale - newInvestments) *
-                    multiFamilyConfig.targetEM +
-                newInvestments *
-                    (1 + multiFamilyConfig.returnPercent * holdTime);
+                years.length === 3
+                    ? (holdenYear.profitsOnSale - newInvestments) *
+                          multiFamilyConfig.targetEM +
+                      newInvestments *
+                          (1 + multiFamilyConfig.returnPercent * holdTime)
+                    : holdenYear.profitsOnSale * multiFamilyConfig.targetEM;
         }
 
         const endingInvestedBalance = totalInvested + profitsOnSale;
