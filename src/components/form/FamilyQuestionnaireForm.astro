@@ -1,7 +1,7 @@
 ---
 function familyQuestionnaireform() {
     function priceToNumber(price: number) {
-        return Number(price.toString().replace(',', ''));
+        return Number(price.toString().replace(/,/g, ''));
     }
     return {
         value: {
@@ -12,6 +12,7 @@ function familyQuestionnaireform() {
         },
         step: 1,
         submit() {
+            console.log(this.value.totalValue);
             window.location.href = `/family-calculation-results?numberOfProperties=${this.value.numberOfProperties}&monthlyCashflow=${priceToNumber(this.value.monthlyCashflow)}&totalValue=${priceToNumber(this.value.totalValue)}&totalOwed=${priceToNumber(this.value.totalOwed)}`;
         },
         nextStep() {
