@@ -54,7 +54,7 @@ function accordion() {
         gap: 1rem;
         border: 1px solid var(--color-teal-dark);
         border-radius: 1rem;
-        padding: 1.5rem;
+        padding: 12px;
         height: fit-content;
         background-color: var(--color-neutral-light);
         z-index: 3;
@@ -84,7 +84,7 @@ function accordion() {
     .accordion-content {
         display: flex;
         flex-direction: column;
-        gap: 0.3rem;
+        gap: 1.5rem;
         overflow: hidden;
         height: 0;
         transition: var(--transition);
@@ -92,7 +92,7 @@ function accordion() {
 
     .open {
         transition: var(--transition);
-        height: 24em !important;
+        height: fit-content;
     }
 
     .table-header,
