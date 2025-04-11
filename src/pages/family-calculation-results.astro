@@ -35,7 +35,7 @@ import SingleFamilyAccordion from '../components/SingleFamilyAccordion.astro';
     .float {
         height: 1rem;
         display: grid;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 1rem;
         z-index: 9999;
         @media (max-width: 1200px) {
@@ -51,8 +51,8 @@ import SingleFamilyAccordion from '../components/SingleFamilyAccordion.astro';
         animation: var(--animation-grow-strong);
     }
     .layout {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
+        display: flex;
+        flex-direction: column;
         position: relative;
         gap: 2rem;
         flex-grow: 1;
