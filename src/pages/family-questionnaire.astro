@@ -16,10 +16,7 @@ import FamilyQuestionnaireForm from '../components/form/FamilyQuestionnaireForm.
 </head>
 <Layout>
     <Container>
-        <div
-            class="layout"
-            x-data="{ value: { numberOfProperties: 0, monthlyCashflow: 0, totalValue: 0, totalOwed: 0 } }"
-        >
+        <div class="layout">
             <h1 class="title">
                 Let's Build Your Blueprint to Long Term Wealth and Passive
                 Income Through Multifamily Real Estate Investing
@@ -40,7 +37,10 @@ import FamilyQuestionnaireForm from '../components/form/FamilyQuestionnaireForm.
                                 required
                             />
                             <div>
-                                <Button @click="nextStep">Next</Button>
+                                <Button
+                                    @click="nextStep"
+                                    :disabled="!isStepValid">Next</Button
+                                >
                             </div>
                         </Step>
                         <Step
@@ -58,7 +58,10 @@ import FamilyQuestionnaireForm from '../components/form/FamilyQuestionnaireForm.
                             />
                             <div>
                                 <Button @click="back">Back</Button>
-                                <Button @click="nextStep">Next</Button>
+                                <Button
+                                    @click="nextStep"
+                                    :disabled="!isStepValid">Next</Button
+                                >
                             </div>
                         </Step>
                         <Step
@@ -76,7 +79,10 @@ import FamilyQuestionnaireForm from '../components/form/FamilyQuestionnaireForm.
                             />
                             <div>
                                 <Button @click="back">Back</Button>
-                                <Button @click="nextStep">Next</Button>
+                                <Button
+                                    @click="nextStep"
+                                    :disabled="!isStepValid">Next</Button
+                                >
                             </div>
                         </Step>
                         <Step
@@ -94,7 +100,9 @@ import FamilyQuestionnaireForm from '../components/form/FamilyQuestionnaireForm.
                             />
                             <div>
                                 <Button @click="back">Back</Button>
-                                <Button @click="submit">Submit</Button>
+                                <Button @click="submit" :disabled="!isStepValid"
+                                    >Submit</Button
+                                >
                             </div>
                         </Step>
                     </Slider>

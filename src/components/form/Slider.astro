@@ -1,18 +1,22 @@
 <div class="slider">
-  <div class="slide-wrapper" :style="{'margin-left': `-${(step - 1) * 20}rem`}">
-    <slot/>
-  </div>
+    <div
+        class="slide-wrapper"
+        :style="{'margin-left': `-${(step - 1) * 25}rem`}"
+    >
+        <slot />
+    </div>
 </div>
 
 <style>
-  .slider {
-    display: flex;
-    width: 100%;
-  }
+    .slider {
+        display: flex;
+        width: 100%;
+    }
 
-  .slide-wrapper {
-    transition: var(--transition);
-    display: flex;
-    flex-direction: row;
-  }
+    .slide-wrapper {
+        transition: var(--transition);
+        display: flex;
+        flex-direction: row;
+        gap: 5rem;
+    }
 </style>

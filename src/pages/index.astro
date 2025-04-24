@@ -16,10 +16,7 @@ import Background from '../components/form/Background.astro';
 </head>
 <Layout>
     <Container>
-        <div
-            class="layout"
-            x-data="{ value: { oneTimePayment: '', multipleTimePayment: '' } }"
-        >
+        <div class="layout">
             <h1 class="title">
                 Let's Build Your Blueprint to Long Term Wealth and Passive
                 Income Through Multifamily Real Estate Investing
@@ -49,7 +46,9 @@ import Background from '../components/form/Background.astro';
                                 />
                             </div>
                             <div class="button-wrapper">
-                                <Button type="submit">Next</Button>
+                                <Button type="submit" :disabled="!isStepValid()"
+                                    >Next</Button
+                                >
                             </div>
                         </Step>
                         <Step title="New Investments" step={2}>
@@ -60,11 +59,11 @@ import Background from '../components/form/Background.astro';
                                 label="Amount of Investment"
                                 x-model="value.newInvestments"
                                 name="newInvestments"
-                                required
-                                autofocus
                             />
                             <div class="button-wrapper">
-                                <Button type="submit">Next</Button>
+                                <Button type="submit" :disabled="!isStepValid()"
+                                    >Next</Button
+                                >
                             </div>
                         </Step>
                         <Step title="Number of Investments" step={3}>
@@ -74,19 +73,18 @@ import Background from '../components/form/Background.astro';
                                 label="Number of Investments Per Year"
                                 x-model="value.numberOfInvestments"
                                 name="numberOfInvestments"
-                                required
-                                autofocus
                             />
                             <div class="button-wrapper">
                                 <Button
                                     class="button is-secondary"
                                     @click="--step">Back</Button
                                 >
-                                <Button type="submit">Next</Button>
+                                <Button type="submit" :disabled="!isStepValid()"
+                                    >Next</Button
+                                >
                             </div>
                         </Step>
                     </Slider>
-                    <Form />
                 </Form>
             </div>
         </div>

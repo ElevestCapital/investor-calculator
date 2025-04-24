@@ -1,22 +1,48 @@
 ---
 function familyQuestionnaireform() {
-    function priceToNumber(price: number) {
-        return Number(price.toString().replace(/,/g, ''));
+    function priceToNumber(price: string) {
+        return Number(price.replace(/,/g, ''));
     }
+
     return {
         value: {
-            numberOfProperties: 0,
-            monthlyCashflow: 0,
-            totalValue: 0,
-            totalOwed: 0,
+            numberOfProperties: '',
+            monthlyCashflow: '',
+            totalValue: '',
+            totalOwed: '',
         },
         step: 1,
+        isValid: false,
+        init() {
+            // @ts-ignore
+            const self = this as this & {
+                $watch: (key: string, cb: () => void) => void;
+            };
+            self.$watch('value.numberOfProperties', () => self.validate());
+            self.$watch('value.monthlyCashflow', () => self.validate());
+            self.$watch('value.totalValue', () => self.validate());
+            self.$watch('value.totalOwed', () => self.validate());
+            self.$watch('step', () => self.validate());
+            self.validate();
+        },
+        validate() {
+            if (this.step === 1) {
+                this.isValid = this.value.numberOfProperties.trim() !== '';
+            } else if (this.step === 2) {
+                this.isValid = this.value.monthlyCashflow.trim() !== '';
+            } else if (this.step === 3) {
+                this.isValid = this.value.totalValue.trim() !== '';
+            } else if (this.step === 4) {
+                this.isValid = this.value.totalOwed.trim() !== '';
+            } else {
+                this.isValid = false;
+            }
+        },
         submit() {
-            console.log(this.value.totalValue);
             window.location.href = `/family-calculation-results?numberOfProperties=${this.value.numberOfProperties}&monthlyCashflow=${priceToNumber(this.value.monthlyCashflow)}&totalValue=${priceToNumber(this.value.totalValue)}&totalOwed=${priceToNumber(this.value.totalOwed)}`;
         },
         nextStep() {
-            this.step += 1;
+            if (this.isValid) this.step += 1;
         },
         back() {
             this.step -= 1;
@@ -26,11 +52,7 @@ function familyQuestionnaireform() {
 ---
 
 <div class="card">
-    <form
-        class="form"
-        x-data={familyQuestionnaireform}
-        @submit.prevent="submit"
-    >
+    <form class="form" x-data={familyQuestionnaireform}>
         <slot />
     </form>
 </div>

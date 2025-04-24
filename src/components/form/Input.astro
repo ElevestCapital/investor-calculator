@@ -16,7 +16,7 @@ function input(){
   <p class="label">{Astro.props.label}</p>
   <div class="input-wrapper">
     {Astro.props.price ? <span class="price">$</span> : <></>}
-    <input {...Astro.props} x-data={input} x-model="content" x-on:input="updateContent" class="input" autofocus>
+    <input {...Astro.props} x-data={input} x-model="content" x-on:input="updateContent" class="input">
   </div>
 </label>
 <style>

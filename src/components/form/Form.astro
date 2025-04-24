@@ -2,7 +2,7 @@
 function form() {
     return {
         value: {
-            newInvestments: '0',
+            newInvestments: '',
             numberOfInvestments: 1,
             oneTimePayment: '',
             multipleTimePayment: '',
@@ -32,6 +32,18 @@ function form() {
         },
         back() {
             this.step -= 1;
+        },
+        isStepValid() {
+            if (this.step === 1) {
+                return (
+                    this.value.oneTimePayment || this.value.multipleTimePayment
+                );
+            } else if (this.step === 2) {
+                return this.value.newInvestments.trim() !== '';
+            } else if (this.step === 3) {
+                return this.value.numberOfInvestments > 0;
+            }
+            return false;
         },
     };
 }
