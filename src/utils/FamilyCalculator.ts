@@ -36,13 +36,25 @@ export default function calculator() {
             : parseFloat(initial.monthlyCashflow) * 12,
     });
 
+    // Added function to provide tiered return percent based on year, per client requirements
+    function getReturnPercent(year: number) {
+        if (year === 1) return 0.024; // Year 1: 2.4%
+        if (year === 2) return 0.028; // Year 2: 2.8%
+        if (year === 3) return 0.040; // Year 4: 4.0%
+        if (year === 4) return 0.040; // Year 2: 4.0%
+        if (year === 5) return 0.066; // Year 2: 6.6%
+        return 0.040; // Year 6 and beyond: 4.0%
+    }
+
     const nextYearSingleFamily = (years: any, newInvestments: any) => {
         const previousYear = years[years.length - 1];
         const holdenYear =
             years[years.length - holdTime] || year0(newInvestments);
         const totalInvested = previousYear.endingInvestedBalance;
+        // Changed to use tiered return percent based on year (years.length)
         const prefferedReturn =
-            totalInvested * singleFamilyConfig.returnPercent;
+            totalInvested * getReturnPercent(years.length);
+            console.log(years.length,"year",getReturnPercent(years.length),"returnPercent")
         let profitsOnSale = 0;
 
         let endingInvestedBalance = totalInvested + profitsOnSale;
@@ -67,29 +79,28 @@ export default function calculator() {
         };
     };
 
-    const nextYearMultiFamily = (years: any, newInvestments: any) => {
+    const nextYearMultiFamily = (years:any, newInvestments: any) => {
+        const yearNumber = years.length;
         const previousYear = years[years.length - 1];
-        const holdenYear =
-            years[years.length - holdTime] || year0(newInvestments, true);
-        const totalInvested = previousYear.endingInvestedBalance;
-        const prefferedReturn = totalInvested * multiFamilyConfig.returnPercent;
+        const holdenYear = years[years.length - holdTime] || year0(newInvestments, true);
         let profitsOnSale = 0;
-
-        if (years.length % 3 === 0) {
+        let endingInvestedBalance = previousYear.endingInvestedBalance;
+    
+        // Only apply sale logic for years after the first 3 years (i.e., year 4, 7, 10, ...)
+        if (yearNumber > 3 && (yearNumber - 1) % 3 === 0) {
             profitsOnSale =
-                years.length === 3
-                    ? (holdenYear.profitsOnSale - newInvestments) *
-                          multiFamilyConfig.targetEM +
-                      newInvestments *
-                          (1 + multiFamilyConfig.returnPercent * holdTime)
+                yearNumber === 4
+                    ? (holdenYear.profitsOnSale - newInvestments) * multiFamilyConfig.targetEM +
+                      newInvestments * (1 + getReturnPercent(yearNumber) * holdTime)
                     : holdenYear.profitsOnSale * multiFamilyConfig.targetEM;
+            endingInvestedBalance += profitsOnSale;
         }
-
-        const endingInvestedBalance = totalInvested + profitsOnSale;
-
+    
+        const prefferedReturn = endingInvestedBalance * getReturnPercent(yearNumber);
+    
         return {
-            number: years.length,
-            totalInvested,
+            number: yearNumber,
+            totalInvested: previousYear.endingInvestedBalance,
             prefferedReturn,
             profitsOnSale,
             endingInvestedBalance,
@@ -171,7 +182,7 @@ export default function calculator() {
             return {
                 1: years[1],
                 2: years[2],
-                3: years[2],
+                3: years[3],
                 4: years[4],
                 5: years[5],
                 10: years[10],

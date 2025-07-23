@@ -18,41 +18,72 @@ export default function calculator() {
         endingInvestedBalance: -newInvestments,
         cashFlow: 0,
     });
+    // Added function to provide tiered return percent based on year, per client requirements
+    function getReturnPercent(year: number) {
+        if (year === 1) return 0.024; // Year 1: 2.4%
+        if (year === 2) return 0.028; // Year 2: 2.8%
+        if (year === 3) return 0.040; // Year 4: 4.0%
+        if (year === 4) return 0.040; // Year 2: 4.0%
+        if (year === 5) return 0.066; // Year 2: 6.6%
+        return 0.040; // Year 6 and beyond: 4.0%
+    }
     const nextYear = (years: any, newInvestments: any) => {
+        const yearNumber = years.length;
         const previousYear = years[years.length - 1];
         const holdenYear =
             years[years.length - holdTime] || year0(newInvestments);
-        const totalInvested = previousYear.endingInvestedBalance;
-        const prefferedReturn = totalInvested * returnPercent;
-        let profitsOnSale = 0;
+
         if (initial.investmentType === 'oneTimePayment') {
-            if (years.length % 3 === 0) {
+            let profitsOnSale = 0;
+            let endingInvestedBalance = previousYear.endingInvestedBalance;
+
+            // Sale logic from nextYearMultiFamily
+            if (yearNumber > 3 && (yearNumber - 1) % 3 === 0) {
                 profitsOnSale =
-                    years.length === 3
+                    yearNumber === 4
                         ? (holdenYear.profitsOnSale - newInvestments) *
                               targetEM +
-                          newInvestments * (1 + returnPercent * holdTime)
+                          newInvestments *
+                              (1 + getReturnPercent(yearNumber) * holdTime)
                         : holdenYear.profitsOnSale * targetEM;
+                endingInvestedBalance += profitsOnSale;
             }
+
+            const prefferedReturn =
+                endingInvestedBalance * getReturnPercent(yearNumber);
+
+            return {
+                number: yearNumber,
+                totalInvested: previousYear.endingInvestedBalance,
+                prefferedReturn,
+                profitsOnSale,
+                endingInvestedBalance,
+                cashFlow: prefferedReturn / 12,
+            };
         } else {
+            // This is the old logic for annual which user says is correct.
+            const totalInvested = previousYear.endingInvestedBalance;
+            const prefferedReturn =
+                totalInvested * getReturnPercent(years.length);
+            let profitsOnSale = 0;
             if (years.length >= holdTime) {
                 profitsOnSale =
                     (holdenYear.profitsOnSale - newInvestments) * targetEM +
-                    newInvestments * (1 + returnPercent * holdTime);
+                    newInvestments *
+                        (1 + getReturnPercent(years.length) * holdTime);
             }
+            const subtractNewInvestments = newInvestments;
+            const endingInvestedBalance =
+                totalInvested - subtractNewInvestments + profitsOnSale;
+            return {
+                number: years.length,
+                totalInvested,
+                prefferedReturn,
+                profitsOnSale,
+                endingInvestedBalance,
+                cashFlow: prefferedReturn / 12,
+            };
         }
-        const subtractNewInvestments =
-            initial.investmentType === 'oneTimePayment' ? 0 : newInvestments;
-        const endingInvestedBalance =
-            totalInvested - subtractNewInvestments + profitsOnSale;
-        return {
-            number: years.length,
-            totalInvested,
-            prefferedReturn,
-            profitsOnSale,
-            endingInvestedBalance,
-            cashFlow: prefferedReturn / 12,
-        };
     };
     return {
         newInvestments: initial.newInvestments,
@@ -104,7 +135,7 @@ export default function calculator() {
                 return {
                     1: years[1],
                     2: years[2],
-                    3: years[2],
+                    3: years[3],
                     4: years[4],
                     5: years[5],
                     10: years[10],
