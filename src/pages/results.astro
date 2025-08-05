@@ -69,7 +69,11 @@ import Accordion from '../components/Accordion.astro';
         z-index: 9999;
         @media (max-width: 767px) {
             height: fit-content;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
+        }
+        @media (max-width: 576px) {
+            height: fit-content;
+            grid-template-columns: 1fr ;
         }
     }
     .form-wrapper {
