@@ -17,14 +17,25 @@ import "../styles/global.scss"
 <body>  
 	<slot/>
  <script>
-      function sendHeight() {
-        const height = document.documentElement.scrollHeight;
-        window.parent.postMessage({ type: "setHeight", height: height }, "*");
-      }
+  function sendHeight() {
+    const body = document.body;
+    const html = document.documentElement;
 
-      window.addEventListener("load", sendHeight);
-      window.addEventListener("resize", sendHeight);
-      setInterval(sendHeight, 500); // fallback for dynamic content
-    </script>
+    // Take the max to be safe
+    const height = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+
+    window.parent.postMessage({ type: "setHeight", height: height }, "*");
+  }
+
+  window.addEventListener("load", sendHeight);
+  window.addEventListener("resize", sendHeight);
+  setInterval(sendHeight, 500);
+</script>
 </body>
 </html>
