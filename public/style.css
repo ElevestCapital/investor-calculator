@@ -230,36 +230,3 @@ body {
   padding: 0 0.5rem;
   color: var(--neutral-light)
 }
-
-/* Embed-specific styles to prevent vertical scrolling */
-html.is-embedded {
-  height: 100%;
-  overflow: hidden;
-}
-
-html.is-embedded body {
-  height: 100%;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-html.is-embedded .container {
-  min-height: 100%;
-  height: 100vh;
-  overflow: hidden;
-  padding: 1rem;
-}
-
-html.is-embedded .container .layout {
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-top: 2rem;
-}
-
-@media (max-width: 767px) {
-  html.is-embedded .container .layout {
-    padding-top: 1rem;
-  }
-}
