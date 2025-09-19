@@ -137,16 +137,8 @@ import Accordion from "../components/Accordion.astro";
     font-size: 1rem;
     margin: 1rem 0;
   }
-  .col {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    @media (max-width: 1200px) {
-      grid-column-start: 1;
-      grid-column-end: 2;
-    }
+    @media (max-width: 850px) {
+    gap: 1.5rem;  // reduce spacing for mobile
   }
   .subcol {
     display: flex;
