@@ -37,16 +37,3 @@ body {
   color: var(--color-teal-dark);
   font-family: var(--font-family);
 }
-
-/* Embed-specific styles to prevent vertical scrolling */
-html.is-embedded {
-  height: 100%;
-  overflow: hidden;
-}
-
-html.is-embedded body {
-  height: 100%;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
