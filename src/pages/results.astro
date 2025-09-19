@@ -1,133 +1,156 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Container from '../components/Container.astro';
-import calculator from '../utils/Calculator';
-import Form from '../components/form/Form.astro';
-import Input from '../components/form/Input.astro';
-import Accordion from '../components/Accordion.astro';
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/Container.astro";
+import calculator from "../utils/Calculator";
+import Form from "../components/form/Form.astro";
+import Input from "../components/form/Input.astro";
+import Accordion from "../components/Accordion.astro";
 ---
 
 <Layout>
-    <Container>
-        <div class="layout" x-data={calculator}>
-            <div class="col">
-                <div class="subcol">
-                    <a class="link" href="/">← GO BACK</a>
-                    <div class="title-wrapper">
-                        <p class="title">
-                            Here is Your Blueprint Based on the Amount of
-                            Investment per Deal and The Number of Investments
-                            per Year Below
-                        </p>
-                    </div>
-                </div>
-                <div class="form-wrapper">
-                    <Form>
-                        <Input
-                            price
-                            x-mask:dynamic="$money($input)"
-                            type="text"
-                            label="Amount of Investment"
-                            x-model={'newInvestments'}
-                            name="newInvestments"
-                            required
-                        />
-                        <template x-if="investmentType !== 'oneTimePayment'">
-                            <Input
-                                type="number"
-                                step="1"
-                                label="Number of Investments Per Year"
-                                x-model={'numberOfInvestments'}
-                                name="numberOfInvestments"
-                                required
-                            />
-                        </template>
-                    </Form>
-                </div>
-            </div>
-            <div class="float">
-                <Accordion
-                    title="Approximate Monthly Cashflow"
-                    data="cashFlow"
-                    color="var(--teal-dark)"
-                />
-                <Accordion
-                    title="Approximate Investment Equity Balance"
-                    data="endingInvestedBalance"
-                    color="var(--teal-dark)"
-                />
-            </div>
+  <Container>
+    <div class="layout" x-data={calculator}>
+      <div class="col">
+        <div class="subcol">
+          <a class="link" href="/">← GO BACK</a>
+          <div class="title-wrapper">
+            <p class="title">
+              Here is Your Blueprint Based on the Amount of Investment per Deal
+              and The Number of Investments per Year Below
+            </p>
+          </div>
         </div>
-    </Container>
+        <div class="form-wrapper">
+          <Form>
+            <Input
+              price
+              x-mask:dynamic="$money($input)"
+              type="text"
+              label="Amount of Investment"
+              x-model={"newInvestments"}
+              name="newInvestments"
+              required
+            />
+            <template x-if="investmentType !== 'oneTimePayment'">
+              <Input
+                type="number"
+                step="1"
+                label="Number of Investments Per Year"
+                x-model={"numberOfInvestments"}
+                name="numberOfInvestments"
+                required
+              />
+            </template>
+          </Form>
+        </div>
+      </div>
+      <div class="float">
+        <Accordion
+          title="Approximate Monthly Cashflow"
+          data="cashFlow"
+          color="var(--teal-dark)"
+        />
+        <Accordion
+          title="Approximate Investment Equity Balance"
+          data="endingInvestedBalance"
+          color="var(--teal-dark)"
+        />
+      </div>
+    </div>
+    <div>
+      <p>
+        Disclaimer: Your results are based on the dollar amount and frequency of
+        investments you chose. These results represent a strategy where you
+        choose to invest the same amount each year and utilize 1031 exchange to
+        roll your principal investment and profits upon sale into subsequent
+        offerings and allow your investments to compound over time. The
+        calculations used are as follows: 2.4% annual cash-on-cash return in
+        Year 1, increasing to 2.8% in Year 2, increasing to 4.0% in Year 3 and
+        Year 4, lastly increasing to 6.6% in Year 5. Year 6 and beyond goes to
+        4.0%. Followed by an 8% preferred return with an 85/15 LP/GP profit
+        split. The investment targets a 1.8x equity multiple with an average
+        hold period of 36 months. The Ending Investment Balance and Approximate
+        Monthly Cashflow are only an estimate and are not a guarantee of future
+        returns. We are not attorneys, investment advisors, accountants, tax
+        professionals or financial advisors and any of the content presented
+        should not be taken as professional advice. We recommend seeking the
+        advice of a financial professional before making any investment
+        decision, and we accept no liability whatsoever for any loss or damage
+        you may incur. We urge you to perform your own due diligence and seek
+        the advice of your own professional before making any investment. For a
+        complete list of Disclosures click HERE
+      </p>
+    </div>
+  </Container>
 </Layout>
 <style lang="scss">
-    .float {
-        height: 1rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        z-index: 9999;
-        @media (max-width: 767px) {
-            height: fit-content;
-            grid-template-columns: 1fr 1fr;
-        }
-        @media (max-width: 576px) {
-            height: fit-content;
-            grid-template-columns: 1fr ;
-        }
+  .float {
+    height: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    z-index: 9999;
+    @media (max-width: 767px) {
+      height: fit-content;
+      grid-template-columns: 1fr 1fr;
     }
-    .form-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        z-index: 1;
-        animation: var(--animation-grow-strong);
+    @media (max-width: 576px) {
+      height: fit-content;
+      grid-template-columns: 1fr;
     }
-    .layout {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        position: relative;
-        gap: 2rem;
-        flex-grow: 1;
-        @media (max-width: 850px) {
-            display: flex;
-            flex-direction: column;
-            padding: 1rem;
-        }
+  }
+  .form-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    z-index: 1;
+    animation: var(--animation-grow-strong);
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    position: relative;
+    gap: 2rem;
+    flex-grow: 1;
+    @media (max-width: 850px) {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
     }
-    .link {
-        color: var(--color-teal-default);
+  }
+  .link {
+    color: var(--color-teal-default);
+  }
+  .title-wrapper {
+    z-index: 2;
+  }
+  .title {
+    font-weight: 400;
+    font-size: 2rem;
+  }
+  .title span {
+    color: var(--color-orange-default);
+  }
+  .eyebrow {
+    color: var(--color-orange-dark);
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    @media (max-width: 1200px) {
+      grid-column-start: 1;
+      grid-column-end: 2;
     }
-    .title-wrapper {
-        z-index: 2;
-    }
-    .title {
-        font-weight: 400;
-        font-size: 2rem;
-    }
-    .title span {
-        color: var(--color-orange-default);
-    }
-    .eyebrow {
-        color: var(--color-orange-dark);
-        text-transform: uppercase;
-        font-size: 1rem;
-        margin: 1rem 0;
-    }
-    .col {
-        display: flex;
-        flex-direction: column;
-        gap: 4rem;
-        grid-row-start: 1;
-        grid-row-end: 3;
-        @media (max-width: 1200px) {
-            grid-column-start: 1;
-            grid-column-end: 2;
-        }
-    }
-    .subcol {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+  }
+  .subcol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 </style>
