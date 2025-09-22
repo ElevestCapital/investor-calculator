@@ -57,6 +57,19 @@ import SingleFamilyAccordion from "../components/SingleFamilyAccordion.astro";
   </div>
 </Layout>
 <style lang="scss">
+.disclaimer-section {
+    margin-top: 2rem;
+    padding: 1rem 0;
+  }
+
+  .disclaimer-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-teal-dark);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
   .float {
     height: fit-content;
     display: grid;
@@ -122,27 +135,5 @@ import SingleFamilyAccordion from "../components/SingleFamilyAccordion.astro";
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-  }
-  .disclaimer-section {
-    margin-top: 2rem;
-    padding: 1rem 0;
-    position: relative;
-    z-index: 2;
-    clear: both;
-  }
-
-  .disclaimer-text {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--color-teal-dark);
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .disclaimer-text br {
-    display: block;
-    margin: 0.5rem 0;
-    content: "";
   }
 </style>
