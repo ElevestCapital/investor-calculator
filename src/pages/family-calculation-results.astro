@@ -27,7 +27,7 @@ import SingleFamilyAccordion from "../components/SingleFamilyAccordion.astro";
         />
       </div>
     </div>
-    <div style="margin-top: 3rem; padding: 1rem 0;" class="disclaimer-section">
+    <div class="disclaimer-section">
       <p class="disclaimer-text">
         Disclaimer: Your results are based on the dollar amount and frequency of
         investments you chose. These results represent a strategy where you
@@ -58,10 +58,13 @@ import SingleFamilyAccordion from "../components/SingleFamilyAccordion.astro";
   </Container>
 </Layout>
 <style lang="scss">
-  .disclaimer-section {
-    margin-top: 2rem;
-    padding: 1rem 0;
-  }
+ .disclaimer-section {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  position: relative;
+  z-index: 20; // make sure it's above .float (10)
+}
+
 
   .disclaimer-text {
     font-size: 0.9rem;
@@ -78,12 +81,12 @@ import SingleFamilyAccordion from "../components/SingleFamilyAccordion.astro";
   //     content: "";
   //   }
   .float {
-    height: 1rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    position: relative;
-    z-index: 10;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  position: relative;
+  z-index: 10;
+  height: auto; // or just remove the height line completely
 
     @media (max-width: 792px) {
       height: fit-content;
