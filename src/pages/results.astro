@@ -57,8 +57,8 @@ import Accordion from "../components/Accordion.astro";
         />
       </div>
     </div>
-    <div>
-      <p>
+    <div class="disclaimer-section">
+      <p class="disclaimer-text">
         Disclaimer: Your results are based on the dollar amount and frequency of
         investments you chose. These results represent a strategy where you
         choose to invest the same amount each year and utilize 1031 exchange to
@@ -69,16 +69,19 @@ import Accordion from "../components/Accordion.astro";
         Year 4, lastly increasing to 6.6% in Year 5. Year 6 and beyond goes to
         4.0%. Followed by an 8% preferred return with an 85/15 LP/GP profit
         split. The investment targets a 1.8x equity multiple with an average
-        hold period of 36 months. The Ending Investment Balance and Approximate
-        Monthly Cashflow are only an estimate and are not a guarantee of future
-        returns. We are not attorneys, investment advisors, accountants, tax
-        professionals or financial advisors and any of the content presented
-        should not be taken as professional advice. We recommend seeking the
-        advice of a financial professional before making any investment
-        decision, and we accept no liability whatsoever for any loss or damage
-        you may incur. We urge you to perform your own due diligence and seek
-        the advice of your own professional before making any investment. For a
-        complete list of Disclosures click HERE
+        hold period of 36 months. <br />
+        The Ending Investment Balance and Approximate Monthly Cashflow are only an
+        estimate and are not a guarantee of future returns. <br /> We are not attorneys,
+        investment advisors, accountants, tax professionals or financial advisors
+        and any of the content presented should not be taken as professional advice.
+        We recommend seeking the advice of a financial professional before making
+        any investment decision, and we accept no liability whatsoever for any loss
+        or damage you may incur. We urge you to perform your own due diligence and
+        seek the advice of your own professional before making any investment. <br
+        />For a complete list of Disclosures <a
+          style="font-weight: 700;"
+          href="https://elevestcapital.com/disclosures/">click HERE</a
+        >
       </p>
     </div>
   </Container>
@@ -152,5 +155,25 @@ import Accordion from "../components/Accordion.astro";
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .disclaimer-section {
+    margin-top: 2rem;
+    padding: 1rem 0;
+  }
+
+  .disclaimer-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-teal-dark);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .disclaimer-text br {
+    display: block;
+    margin: 0.5rem 0;
+    content: "";
   }
 </style>
